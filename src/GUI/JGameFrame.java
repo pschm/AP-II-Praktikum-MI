@@ -21,11 +21,12 @@ public class JGameFrame extends JFrame {
 
 	public JGameFrame(String newTitel, int newXSize, int newYSize, boolean newVisiblity){
 
-
+		super();
 		setSize(newXSize, newYSize);
 		setTitle(newTitel);
-		setVisible(newVisiblity);
 		buildGUI();
+		setVisible(newVisiblity);
+		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 	}
@@ -35,7 +36,7 @@ public class JGameFrame extends JFrame {
 		System.out.println("Hallo");
 
 		JPanel controlPanel = new JPanel (new FlowLayout());
-
+		add(controlPanel);
 		JButton btnStart = new JButton("Start");
 		JButton sLevel 	 = new JButton("kleine Ebene bauen");
 		JButton mLevel   = new JButton("mittlere Ebene bauen");
