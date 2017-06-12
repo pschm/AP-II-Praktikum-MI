@@ -21,7 +21,7 @@ public class App {
 
 	static int f = 0;
 	static City st = new City();
-	static JGameFrame gameUC = new JGameFrame("Underground City", 800, 600, true);	
+	static JGameFrame gameUC = new JGameFrame("Underground City", 800, 600, true, st);	
 	
 	
 	public static void main(String[] args) {
@@ -32,7 +32,7 @@ public class App {
 		
 		do{
 			System.out.println("\n--------------------------------Menüsteuerung---------------------------------\n"
-					+ "		 -: Ebene Runter   +: Ebene Hoch     e: Exit		a: Secret\n"
+					+ "		 -: Ebene Runter   +: Ebene Hoch     e: Exit		a: zerstöre das letzte Gebäude\n"
 					+ "Spiellänge:	 1: für 1 Runde    3: für 3 Runden   5: für 5 Runden    7: für Runden \n" 
 					+ "Ebene bauen:	 k: kleine	   m: mittlere       g: große\n"
 					+ "Bauwerk bauen:	 h: Hochhaus	   v: Villa	     s: Supermarkt	p: Park");
@@ -96,7 +96,7 @@ public class App {
 		case "p": st.buildPark(); /** Park bauen */
 			break;
 			
-		case "a": st.secret();
+		case "a": st.destroyer(); //st.secret();
 			break;
 
 		default: System.out.println("Unglütige Eingabe");

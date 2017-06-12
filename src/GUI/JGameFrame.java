@@ -1,5 +1,6 @@
 package GUI;
 
+import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
 
@@ -8,7 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-// import gameUC.City;
+import gameUC.City;
 
 @SuppressWarnings("serial")
 public class JGameFrame extends JFrame {
@@ -17,26 +18,29 @@ public class JGameFrame extends JFrame {
 	protected int ySize;
 	protected String titel;
 	protected boolean visible;
-	//private City c;
+	private City c;
 
-	public JGameFrame(String newTitel, int newXSize, int newYSize, boolean newVisiblity){
-
+	public JGameFrame(String newTitel, int newXSize, int newYSize, boolean newVisiblity, City c){
+		
 		super();
+		this.c = c;
 		setSize(newXSize, newYSize);
 		setTitle(newTitel);
 		buildGUI();
 		setVisible(newVisiblity);
-		
+
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 	}
 
 	public void buildGUI(){
-		
-		System.out.println("Hallo");
 
+		JPanel gamePanel 	= new JPanel (new FlowLayout());
 		JPanel controlPanel = new JPanel (new FlowLayout());
-		add(controlPanel);
+		JPanel conLevPanel	= new JPanel (new FlowLayout());
+		JPanel levelPanel   = new JPanel (new FlowLayout());
+		JPanel buildPanel   = new JPanel (new FlowLayout());
+
 		JButton btnStart = new JButton("Start");
 		JButton sLevel 	 = new JButton("kleine Ebene bauen");
 		JButton mLevel   = new JButton("mittlere Ebene bauen");
@@ -46,10 +50,16 @@ public class JGameFrame extends JFrame {
 		JButton pBuild   = new JButton("Park bauen");
 		JButton mBuild   = new JButton("Supermarkt bauen");
 		JButton btnExit  = new JButton("Exit");
-		JLabel lbInfo    = new JLabel("Guthabenbeträgt: ....");
 
-		Font f = new Font("Serif" , Font.BOLD, 18);
-		
+		JButton lHigh    = new JButton("Ebende runter");
+		JButton lLow     = new JButton("Ebende hoch");
+		JLabel lbmenue   = new JLabel("Menüsteuerung");
+		JLabel lbInfo    = new JLabel("Guthabenbeträgt: ....");
+		JButton destry   = new JButton("Letzes Gebäude zerstören");
+
+		Font f  = new Font(Font.SANS_SERIF, Font.BOLD, 12);
+		Font f1 = new Font(Font.MONOSPACED, Font.BOLD, 20); 
+
 		btnStart.setFont(f);
 		sLevel.setFont(f);
 		mLevel.setFont(f);
@@ -59,17 +69,35 @@ public class JGameFrame extends JFrame {
 		pBuild.setFont(f);
 		mBuild.setFont(f);
 		lbInfo.setFont(f);
+		lbmenue.setFont(f1);
 		btnExit.setFont(f);	
+		destry.setFont(f);
+		lHigh.setFont(f);	
+		lLow.setFont(f);
+
+		add(gamePanel);
+		gamePanel.add(lbmenue);
+		gamePanel.add(controlPanel);
+		gamePanel.add(conLevPanel);
+		gamePanel.add(levelPanel);
+		gamePanel.add(buildPanel);
 
 		controlPanel.add(btnStart);
 		controlPanel.add(lbInfo);
-		controlPanel.add(sLevel);
-		controlPanel.add(mLevel);
-		controlPanel.add(bLevel);
-		controlPanel.add(sBuild);
-		controlPanel.add(vBuild);
-		controlPanel.add(pBuild);
-		controlPanel.add(mBuild);
 		controlPanel.add(btnExit);
+		conLevPanel.add(lHigh);
+		conLevPanel.add(lLow);
+		conLevPanel.add(destry);
+
+		levelPanel.add(sLevel);
+		levelPanel.add(mLevel);
+		levelPanel.add(bLevel);
+
+		buildPanel.add(sBuild);
+		buildPanel.add(vBuild);
+		buildPanel.add(pBuild);
+		buildPanel.add(mBuild);
+
+
 	}
 }

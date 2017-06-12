@@ -28,6 +28,20 @@ public class Level {
 		}
 
 	}
+	
+	public void destroyBuilding(){
+		
+		if (building.isEmpty()) {
+			System.out.println("Kein Gebäude Vorhanden");
+			return;
+		} 
+		int index = building.size() - 1;
+		
+		Building b  = building.get(index);
+		building.remove(index);
+		freeSlots += b.needSlots();
+		
+	}
 
 	/** wie viele Slots sind frei */
 	public int getFreeSlots(){

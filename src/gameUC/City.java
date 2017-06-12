@@ -15,7 +15,8 @@ public class City {
 	public int getActualLevel() {
 		return actualLevel;
 	}
-
+	
+	
 	
 	/** Ebene erhöhnen */
 	public void higher(){
@@ -185,13 +186,23 @@ public class City {
 		level.get(actualLevel).insertBuilding(new Infrastructure(Structure.parkSlot, Structure.parkCost, Structure.parkName, Structure.parkLifequality)); 
 		credit -= Structure.parkCost;
 	}		
+	
 
-	public void secret(){
-		credit = 0;
-		output();
-		System.out.println("Du hast verloren. #Spielleiterwillkür");
-		System.exit(0);
+	public void destroyer() {
+		
+			level.get(actualLevel).destroyBuilding();
+
+		
 	} 
+	
+	
+	
+//	public void secret(){
+//		credit = 0;
+//		output();
+//		System.out.println("Du hast verloren. #Spielleiterwillkür");
+//		System.exit(0);
+//	} 
 
 
 }	
