@@ -57,7 +57,7 @@ public class JGameFrame extends JFrame {
 		JButton lHigh    = new JButton("Ebende runter");
 		JButton lLow     = new JButton("Ebende hoch");
 		JLabel lbmenue   = new JLabel("Menüsteuerung");
-		JLabel lbInfo    = new JLabel("Guthabenbeträgt: ....");
+		JLabel lbInfo    = new JLabel("Guthaben beträgt: ....");
 		JButton destry   = new JButton("Letzes Gebäude zerstören");
 
 		Font f  = new Font(Font.SANS_SERIF, Font.BOLD, 12);
@@ -104,7 +104,10 @@ public class JGameFrame extends JFrame {
 		btnStart.addActionListener( new ActionListener () {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				c.round(1);	
+				System.out.println("Test1");
+				c.round(1);
+				lbInfo.setText("Guthabenbeträgt: $" + c.getCredit());
+				c.output();
 			}
 		});
 

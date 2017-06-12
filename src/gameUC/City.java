@@ -8,6 +8,10 @@ public class City {
 	private int actualLevel;
 	int credit = Structure.creditBeginn;
 
+	public int getCredit() {
+		return credit;
+	}
+
 	City(){
 		level = new ArrayList<Level>();
 	}
