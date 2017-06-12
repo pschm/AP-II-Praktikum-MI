@@ -55,7 +55,7 @@ public class Apartment extends Building {
 	}
 
 	public int getExpenditure(){
-		return (Structure.dutyCost * actualpopulation)+2*Structure.dutyCost;
+		return (Structure.dutyCost * actualpopulation)+Structure.dutyCost;
 	}
 }
 

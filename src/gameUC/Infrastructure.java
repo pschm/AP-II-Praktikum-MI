@@ -1,5 +1,7 @@
 package gameUC;
 
+
+
 public class Infrastructure extends Building {
 
 	private int lifequality = 0;
@@ -15,21 +17,21 @@ public class Infrastructure extends Building {
 		return lifequality;
 	}
 	
-//	public int getLifequality() {
-//		if (buildname == Structure.marketName){
-//			lifequality += Structure.marketLifequality;
-//		} 
-//		
-//		if (buildname == Structure.parkName){
-//			lifequality += Structure.parkLifequality;
-//		}
-//		
-//		if (lifequality > Structure.maxlifequality){
-//			lifequality = Structure.maxlifequality;
-//		}
-//
-//		return lifequality;
-//	}
+	/**public int getLifequality() {
+		if (buildname == Structure.marketName){
+			lifequality += Structure.marketLifequality;
+		} 
+		
+		if (buildname == Structure.parkName){
+			lifequality += Structure.parkLifequality;
+		}
+		
+		if (lifequality > Structure.maxlifequality){
+			lifequality = Structure.maxlifequality;
+		}
+
+		return lifequality;
+	}*/
 
 	public void round(int totalquality){
 		/** 
@@ -44,7 +46,17 @@ public class Infrastructure extends Building {
 			lifequality = Structure.maxlifequality;
 		}
 		
-	}	
+	}
+	@Override
+	public int getIncome(){
+		
+		 int income = super.getIncome();
+		 if (buildname == Structure.shopName){
+			 income += ((Structure.shopIncome * lifequality)/20);
+		 }
+		
+		return income;
+	}
 }
 
 

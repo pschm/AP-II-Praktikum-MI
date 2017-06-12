@@ -36,17 +36,28 @@ public class Structure {
 	public static final int parkLifequality = 5;
 	/** Park erhöht die Lifequality */
 
+	/** Shop */
+	public static final String shopName = "Shop";
+	public static final int shopCost = 150;
+	public static final int shopIncome = 5;
+	public static final int shopSlot = 4;
+	public static final int shopLifequality = 15;
+	/** Shop erhöht die Lifequality */
+	
 	public static final int levelCost = 55;
 	public static final int rentCost = 52;
-	public static final int dutyCost = 5;
+	public static final int dutyCost = 4;
 	
 	public static final int smallLevelSlot =  10;
 	public static final int mediumLevelSlot = 12;
 	public static final int bigLevelSlot = 14;
 	
-	public static final int creditBeginn = 1100;
+	public static final int creditBeginn = 11000;
 	
 	public static final int maxlifequality = 500;
+	
+	public static final int destroyCostBuilding = 500;
+	public static final int destroyCostLevel = 2000;
 	
 	
 }

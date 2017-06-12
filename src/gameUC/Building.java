@@ -36,6 +36,9 @@ public class Building {
 		if (buildname  == Structure.parkName){
 			return Structure.parkSlot;
 		}
+		if (buildname  == Structure.shopName){
+			return Structure.shopSlot;
+		}
 		return 0;
 	}
 
@@ -46,7 +49,7 @@ public class Building {
 
 	/** Abzüge für das Bauwerk */
 	public int getExpenditure(){
-		return Structure.dutyCost /* mal die Anzahl an actuelle Einwohner*/;
+		return Structure.dutyCost /** mal die Anzahl an actuelle Einwohner*/;
 		
 
 	}
@@ -63,7 +66,9 @@ public class Building {
 
 	/** Zeichnung von den Bauwerken*/
 	public String drawing(){
-		/** Gibt  SSSSVVVV oder MMMMMMPP aus */
+		/** Gibt  SSSSVVVV oder MMMMMMPP aus 
+		 * switch-case möglich
+		 */
 
 		String s = "";
 		if (buildname == Structure.skycraperName){
@@ -89,7 +94,12 @@ public class Building {
 				s += "P";
 			}
 		}
-
+		
+		if (buildname == Structure.shopName){
+			for (int i = 0; i < Structure.shopSlot; i++){
+				s += "E";
+			}
+		}
 
 		/** liefert einen String, der das Bauwerk repräsentiert. Die Länge der
 		Zeichenkette soll dabei der Anzahl der benötigten Slots verwenden. 

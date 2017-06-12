@@ -2,6 +2,8 @@ package gameUC;
 
 import java.util.ArrayList;
 
+import javax.swing.text.StyleContext.SmallAttributeSet;
+
 public class Level {
 
 	ArrayList<Building> building;
@@ -16,11 +18,11 @@ public class Level {
 	/** Fügt ein Bauwerk am Ende der Liste ein. */
 	public void insertBuilding(Building b){
 		/** Jedes Bauwerk verbraucht Slots
-		* d.h. die Anzahl der freien Slots muss sinken 
-		* 
-		* Sind genügend Slots vorhanden?
-		* 
-		*/
+		 * d.h. die Anzahl der freien Slots muss sinken 
+		 * 
+		 * Sind genügend Slots vorhanden?
+		 * 
+		 */
 
 		if (freeSlots >= b.needSlots()){
 			building.add(b);
@@ -28,19 +30,26 @@ public class Level {
 		}
 
 	}
-	
+
 	public void destroyBuilding(){
-		
+
 		if (building.isEmpty()) {
 			System.out.println("Kein Gebäude Vorhanden");
 			return;
 		} 
 		int index = building.size() - 1;
-		
+
 		Building b  = building.get(index);
 		building.remove(index);
 		freeSlots += b.needSlots();
+
+	}
+	
+	public void destroyEverything(){
 		
+		// Alle Gebäude einer Ebene sollen gelöscht werden
+		building.clear();
+		freeSlots = Structure.smallLevelSlot;
 	}
 
 	/** wie viele Slots sind frei */
@@ -55,16 +64,16 @@ public class Level {
 		for(Building b : building){
 			if (b instanceof Apartment){
 				((Apartment) b).round(life);
-			
+
 			} else 
 				if (b instanceof Infrastructure){
-				((Infrastructure) b).round(life);
-				
-			}
-			
+					((Infrastructure) b).round(life);
+
+				}
+
 		}
 		/** Lebensqualität berechnen
-		* ruft für jedes Bauwerk der Ebene die Methode round(...) mit diesem Wert auf	*/
+		 * ruft für jedes Bauwerk der Ebene die Methode round(...) mit diesem Wert auf	*/
 	}
 
 	/**  Zeichnet die Bauwerke auf den einzelnen Slots*/
@@ -114,11 +123,18 @@ public class Level {
 
 			if ( b instanceof Apartment ) {
 				/** Springt in Klasse: Apartment Methode: getIncome()*/
-				income += ((Apartment) b).getIncome();
-			} 
-				/** Springt in Klasse: Building Methode: getIncome()*/
+				income +=  b.getIncome();
+			} else {
+				if (b instanceof Infrastructure){
+					/** Springt in Klasse: Building Methode: getIncome()*/
+					income +=  b.getIncome();
+				}
+				else
 				income += b.getIncome();
+			} 
+			
 		}
+
 		return income;
 	}
 
@@ -127,17 +143,19 @@ public class Level {
 		int expen = 0;
 
 		/** für jedes Bauwerk in einer Ebene 
-		* in Klasse: City Methode: round() für alle Ebenen*/
+		 * in Klasse: City Methode: round() für alle Ebenen*/
 		for (Building b : building){
 
 			if ( b instanceof Apartment ) {
 				/** Springt in Klasse: Apartment Methode: getIncome() */
 				expen += b.getExpenditure();
 			}
+			else 
+			expen += b.getExpenditure();
 		}
 		/** Anzahl der Einahmen der Ebene pro Spielrunde*/
 		return expen;
-				
+
 	}
 
 	/** Lebensquali innerhalb der Ebene */
@@ -149,7 +167,7 @@ public class Level {
 				/** Springt in Klasse: Apartment Methode: getLifequality() */
 				life += ((Infrastructure) b).getLifequality();
 			} 
-				else {
+			else {
 				/** Springt in Klasse: Building Methode: getLifequality() */
 				life += b.getLifequality();
 			}

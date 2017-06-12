@@ -191,14 +191,60 @@ public class City {
 		credit -= Structure.parkCost;
 	}		
 	
+	public void buildShop(){
+		/** Fügt Bauwerk Park auf aktuellen Bauebene aus, WENN genügend
+		 * Slots und Guthaben vorhanden sind. Bei bau zieht Guthaben ab
+		 */
+		if (credit < Structure.shopCost ){
+			System.out.println("Nicht genügend Geld vorhanden");
+			return;
+		}
+		if ( level.get(actualLevel).getFreeSlots() < Structure.shopSlot ){
+			System.out.println("Deine Ebene ist zu klein");
+			return;
+		}
+		level.get(actualLevel).insertBuilding(new Infrastructure(Structure.shopSlot, Structure.shopCost, Structure.shopName, Structure.shopLifequality)); 
+		credit -= Structure.shopCost;
+	}	
 
-	public void destroyer() {
+	public int destroyer() {
 		
+		if (credit < Structure.destroyCostBuilding){
+			System.out.println("Nicht genügend Geld vorhanden");
+			return -1;
+		}
+			credit -= Structure.destroyCostBuilding;
 			level.get(actualLevel).destroyBuilding();
-
+			return 0;
 		
 	} 
 	
+	public void bigDestroyer() {
+		
+		if (credit < Structure.destroyCostLevel){
+			System.out.println("Nicht genügend Geld");
+			return;
+		}
+		
+		if (level.isEmpty()) {
+			System.out.println("Keine Ebene Vorhanden");
+			return;
+		} 
+			
+		while (destroyer() == 0){
+			
+		}
+		
+		
+		
+			// Ist das Richtig so?
+		level.get(actualLevel).destroyEverything();
+		
+		level.remove(level.size() - 1);
+		
+		credit -= Structure.destroyCostLevel;
+	
+} 
 	
 	
 //	public void secret(){
