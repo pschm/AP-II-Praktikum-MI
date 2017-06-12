@@ -1,8 +1,11 @@
 package GUI;
 
-import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -21,7 +24,7 @@ public class JGameFrame extends JFrame {
 	private City c;
 
 	public JGameFrame(String newTitel, int newXSize, int newYSize, boolean newVisiblity, City c){
-		
+
 		super();
 		this.c = c;
 		setSize(newXSize, newYSize);
@@ -98,6 +101,100 @@ public class JGameFrame extends JFrame {
 		buildPanel.add(pBuild);
 		buildPanel.add(mBuild);
 
+		btnStart.addActionListener( new ActionListener () {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				c.round(1);	
+			}
+		});
+
+		btnExit.addActionListener( new ActionListener () {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
+
+		lHigh.addActionListener( new ActionListener () {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
+
+		lLow.addActionListener( new ActionListener () {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
+
+		destry.addActionListener( new ActionListener () {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
+
+		sLevel.addActionListener( new ActionListener () {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
+
+		mLevel.addActionListener( new ActionListener () {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
+
+		bLevel.addActionListener( new ActionListener () {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
+
+		sBuild.addActionListener( new ActionListener () {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
+
+		vBuild.addActionListener( new ActionListener () {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
+
+		pBuild.addActionListener( new ActionListener () {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
+
+		mBuild.addActionListener( new ActionListener () {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
+
+		btnStart.addMouseListener(new MouseAdapter () {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+
+				c.round(1);
+
+			}
+
+		});
 
 	}
 }
