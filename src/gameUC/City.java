@@ -209,17 +209,26 @@ public class City {
 
 	public int destroyer() {
 		
+		// zerstörrt ein Gebäude wenn Geld vorhanden ist
+		
 		if (credit < Structure.destroyCostBuilding){
 			System.out.println("Nicht genügend Geld vorhanden");
 			return -1;
 		}
+		
 			credit -= Structure.destroyCostBuilding;
-			level.get(actualLevel).destroyBuilding();
+		if (level.get(actualLevel).destroyBuilding()){
 			return 0;
+		}
+			
+			
+			return -3;
 		
 	} 
 	
 	public void bigDestroyer() {
+		
+		// Zerstörrt alle gGebäude auf der akutellen Ebene und das aktuelle Level
 		
 		if (credit < Structure.destroyCostLevel){
 			System.out.println("Nicht genügend Geld");
@@ -230,18 +239,24 @@ public class City {
 			System.out.println("Keine Ebene Vorhanden");
 			return;
 		} 
-			
-		while (destroyer() == 0){
-			
-		}
+		
+		int keepDestroying;
+		do { 
+			keepDestroying = destroyer();
+		} while (keepDestroying == 0);
 		
 		
 		
 			// Ist das Richtig so?
 		level.get(actualLevel).destroyEverything();
 		
-		level.remove(level.size() - 1);
+		level.remove(actualLevel);
 		
+//		if (level.isEmpty()) {
+//			actualLevel = 0;
+//			return;
+//		} 
+		actualLevel = 0;
 		credit -= Structure.destroyCostLevel;
 	
 } 

@@ -31,17 +31,18 @@ public class Level {
 
 	}
 
-	public void destroyBuilding(){
+	public boolean destroyBuilding(){
 
 		if (building.isEmpty()) {
 			System.out.println("Kein Gebäude Vorhanden");
-			return;
+			return false;
 		} 
 		int index = building.size() - 1;
 
 		Building b  = building.get(index);
 		building.remove(index);
 		freeSlots += b.needSlots();
+		return true;
 
 	}
 	
