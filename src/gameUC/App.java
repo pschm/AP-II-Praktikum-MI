@@ -33,11 +33,13 @@ public class App {
 		
 		do{
 			System.out.println("\n--------------------------------Menüsteuerung---------------------------------\n"
-					+ "		 -: Ebene Runter   +: Ebene Hoch     c: Exit		a: Gebäude zerstören o: Ebene zerstören\n"
+					+ "		 -: Ebene Runter   +: Ebene Hoch     c: Exit		\n"
+					+ "		 a: Gebäude zerstören 	              o: Ebene zerstören\n"
 					+ "Spiellänge:	 n: für n Runde    3: für 3 Runden   5: für 5 Runden    7: für Runden \n" 
 					+ "Ebene bauen:	 k: kleine	   m: mittlere       g: große\n"
 					+ "Bauwerk bauen:	 h: Hochhaus	   v: Villa	     s: Supermarkt	p: Park "
 					+ "\n		 e: Einkaufsladen  f: Hotel");
+			 
 
 			System.out.println("\nGeben Sie einen Befehl ein:"); 
 
