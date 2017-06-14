@@ -17,6 +17,18 @@ import GUI.JGameFrame;
  * @since 2017-05-20
  */
 
+/** 
+ * Wir fügen noch folgende Klassen hinzu
+ * Industrie mit Fabriken, Firmen
+ * Handwerk mit kleinen Betrieben die die Läden beliefern
+ * Freizeit mit Freizeitparks, Schwimmbäder, Kino 
+ * Öffentliche Gebäude mit Rathhaus, Bibliothek etc
+ * Versorgungsgebäude Elektrizität und Wasser
+ * Erzeugergebäude wie Wind-, Wasseranlagen
+ * 
+ * Slotssystem muss umgebaut werden
+ * 
+ */
 public class App {
 
 	static int f = 0;
@@ -34,7 +46,7 @@ public class App {
 		do{
 			System.out.println("\n--------------------------------Menüsteuerung---------------------------------\n"
 					+ "		 -: Ebene Runter   +: Ebene Hoch     c: Exit		\n"
-					+ "		 a: Gebäude zerstören 	              o: Ebene zerstören\n"
+					+ "		 a: Gebäude zerstören 	             o: Ebene zerstören\n"
 					+ "Spiellänge:	 n: für n Runde    3: für 3 Runden   5: für 5 Runden    7: für Runden \n" 
 					+ "Ebene bauen:	 k: kleine	   m: mittlere       g: große\n"
 					+ "Bauwerk bauen:	 h: Hochhaus	   v: Villa	     s: Supermarkt	p: Park "

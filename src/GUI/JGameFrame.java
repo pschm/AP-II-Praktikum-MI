@@ -59,6 +59,9 @@ public class JGameFrame extends JFrame {
 		JPanel gameUCPanel 	= new JCityPanel(700, 400);
 		JPanel roundPanel	= new JPanel (new FlowLayout());
 		JFrame roundFrame	= new JFrame ("Rundenanzahl");
+		JPanel wohnPanel    = new JPanel (new FlowLayout());
+		JPanel infraPanel   = new JPanel (new FlowLayout());
+		
 			
 		JButton btnStart = new JButton("Start");
 		JButton sLevel 	 = new JButton("kleine");
@@ -69,17 +72,20 @@ public class JGameFrame extends JFrame {
 		JButton pBuild   = new JButton("Park");
 		JButton mBuild   = new JButton("Supermarkt");
 		JButton eBuild	 = new JButton("Einkaufsladen");
+		JButton hBuild	 = new JButton("Hotel");
 		JButton btnExit  = new JButton("Exit");
 
 		JButton lHigh    = new JButton("Ebende runter");
 		JButton lLow     = new JButton("Ebende hoch");
 		JLabel lbmenue   = new JLabel("Menüsteuerung");
 		
-		// Runden müssen noch gezählt werden 
+		/** Runden müssen noch gezählt werden */
 		JLabel lbRInfo	 = new JLabel("Du hast .... Runden gespielt");
 		JLabel lbInfo    = new JLabel("Guthaben beträgt: $ " + Structure.creditBeginn);
 		JLabel lbLevel	 = new JLabel("Was für eine Bauebene willst du bauen?");
 		JLabel lbBuild	 = new JLabel("Was für ein Gebäude willst du bauen?");
+		JLabel lbWohn	 = new JLabel("Wohneinheit");
+		JLabel lbInfra	 = new JLabel("Infratruktur");
 		
 		/** Hierfür müssten noch Kosten anfallen*/
 		JButton destry1  = new JButton("Gebäude zerstören");
@@ -109,6 +115,7 @@ public class JGameFrame extends JFrame {
 		pBuild.setFont(f);
 		mBuild.setFont(f);
 		eBuild.setFont(f);
+		hBuild.setFont(f);
 		
 		btnStart.setFont(f);
 		btnExit.setFont(f);	
@@ -123,6 +130,8 @@ public class JGameFrame extends JFrame {
 		lbmenue.setFont(f1);
 		lbBuild.setFont(f1);
 		lbLevel.setFont(f1);
+		lbInfra.setFont(f1);
+		lbWohn.setFont(f1);
 		taexplain.setFont(f1);
 
 		add(gamePanel);
@@ -150,12 +159,16 @@ public class JGameFrame extends JFrame {
 		levelPanel.add(bLevel);
 
 		buildPanel.add(lbBuild);
-		buildPanel.add(sBuild);
-		buildPanel.add(vBuild);
-		buildPanel.add(pBuild);
-		buildPanel.add(mBuild);
-		buildPanel.add(eBuild);
-		
+		wohnPanel.add(lbWohn);
+		wohnPanel.add(sBuild);
+		wohnPanel.add(vBuild);
+		infraPanel.add(lbInfra);
+		infraPanel.add(pBuild);
+		infraPanel.add(mBuild);
+		infraPanel.add(eBuild);
+		wohnPanel.add(hBuild);
+		gamePanel.add(wohnPanel);
+		gamePanel.add(infraPanel);
 	
 
 		btnStart.addActionListener( new ActionListener () {
@@ -297,6 +310,14 @@ public class JGameFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				c.buildShop();
+				c.output();
+			}
+		});
+		
+		eBuild.addActionListener( new ActionListener () {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				c.buildHotel();
 				c.output();
 			}
 		});

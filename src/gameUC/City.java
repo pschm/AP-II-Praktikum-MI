@@ -8,20 +8,19 @@ public class City {
 	private int actualLevel;
 	int credit = Structure.creditBeginn;
 
-	public int getCredit() {
-		return credit;
-	}
 
+	/** Konstruktur der KLasse City */
 	City(){
 		level = new ArrayList<Level>();
 	}
 
+	/** Die aktuelle Ebene */
 	public int getActualLevel() {
 		return actualLevel;
 	}
-	
-	
-	
+
+
+
 	/** Ebene erhöhnen */
 	public void higher(){
 
@@ -46,6 +45,7 @@ public class City {
 		actualLevel -= 1;
 	}
 
+	/** Spielrunde für alle Ebenen */
 	public void round(int n){
 
 		for (int i = 0; i < n; i++){
@@ -57,29 +57,29 @@ public class City {
 			}
 		}
 
-		/** n = übergebener Parameter Spielrundeanzahl
-		 * führt n Spielrunden aus
-		 *
-		 * Gesammteinnahmen der Ebenen addiert
-		 * Gesammtausgaben jeder Ebene vom Guthabe subtrahiert
-		 * Structure.creditBeginng ist das Startguthaben */
+		/**
+		 * Führt n Spielrunden aus
+		 * Gesammteinnahmen den Ebenen addiert
+		 * Gesammtausgaben jeder Ebene subtrahiert
+		 */
 	}
 
+	/** Ausgabe der vorhandenen Informationen */
 	public void output(){
 
 		System.out.println("Guthaben: $ " + credit);
 
-		/** welche Bauwerke stehen auf meine Ebene und wie viel Fs hab ich */
 		for( Level l : level ){
-			
-			/** Vergleich bauebene l mit aktueller Bauebene*/
+
+			/** Vergleich Bauebene l mit aktueller Bauebene*/
 			if(l.equals(level.get(actualLevel))){
 				System.out.print(" > ");
 			}
-			
+
 			/** Bauwerke werden eingezeichnet */
 			l.drawSlots();
-			/** für Freie Slots*/
+
+			/** Freie Slots*/
 			int fs = l.getFreeSlots();
 			for (int i = 0; i < fs; i++){
 				System.out.print("*");
@@ -90,39 +90,33 @@ public class City {
 		/** Struktur der Stadt auf der Konsole ausgeben
 		 *
 		 * Guthaben $ 0000
-		 * > HHVSPP**** Einwohner: 00 Einnahmen: 00 Kosten: 00 Qualität: 00 */
+		 * HHHHPP**** Einwohner: 00 Einnahmen: 00 Kosten: 00 Qualität: 00 
+		 * > ******** Einwohner: 00 Einnahmen: 00 Kosten: 00 Qualität: 00 
+		 * ********** Einwohner: 00 Einnahmen: 00 Kosten: 00 Qualität: 00 
+		 * 
+		 * */
 	}
 
+	/** Bauen der Ebene */
 	public void buildLevel(int n){
-		/** n = Freie Slots
-		 *Variante: Anstatt Structure.LevelCost könnte auch ein zweiter Parameter übergeben werden 
-		 *
-		 *public static void buildLevel(int preis, int n){
-		 *
-		 *if (credit < preis * n  ){
-		 *	System.out.println("Sie haben nicht genügend Guthaben");
-		 *	return;
-		 *}
-		 *
-		 *level.add(new Level(n));
-		 *credit -= preis * n;
-		 *}
-		 */
+		/** n = Freie Slots */
 
 		if (credit < Structure.levelCost * n  ){
 			System.out.println("Sie haben nicht genügend Guthaben");
 			return;
 		}
-		
+
 		/** Element l und ArraList Level hinzugefügt*/
 		level.add(new Level(n));
 		credit -= Structure.levelCost * n;
 
 	}
 
+	/** Bauen eines Hochhaus */
 	public void buildSkycraper(){
 
-		/** Fügt Bauwerk Hochhaus auf aktuellen Bauebene aus, WENN genügend
+		/** 
+		 * Fügt Bauwerk Hochhaus auf aktuellen Bauebene aus, WENN genügend
 		 * Slots und Guthaben vorhanden sind. Bei bau zieht Guthaben ab
 		 */
 
@@ -139,10 +133,14 @@ public class City {
 
 	}
 
+	/** Bauen eines Villa */
 	public void buildVilla(){
-		/** Fügt Bauwerk Villa auf aktuellen Bauebene aus, WENN genügend
+
+		/** 
+		 * Fügt Bauwerk Villa auf aktuellen Bauebene aus, WENN genügend
 		 * Slots und Guthaben vorhanden sind. Bei bau zieht Guthaben ab
 		 */
+
 		if (credit < Structure.villaCost){
 			System.out.println("Nicht genügend Geld vorhanden");
 			return;
@@ -156,11 +154,13 @@ public class City {
 
 	}
 
+	/** Bauen eines Supermarktes */
 	public void buildMarket(){
-		/** Fügt Bauwerk Supermarkt auf aktuellen Bauebene aus, WENN genügend
+
+		/** 
+		 * Fügt Bauwerk Supermarkt auf aktuellen Bauebene aus, WENN genügend
 		 * Slots und Guthaben vorhanden sind. Bei bau zieht Guthaben ab
 		 */
-
 
 		if (credit < Structure.marketCost){
 			System.out.println("Nicht genügend Geld vorhanden");
@@ -174,11 +174,15 @@ public class City {
 		credit -= Structure.marketCost;
 
 	}
-	
+
+	/** Bauen eines Hotels */
 	public void buildHotel(){
-		/** Fügt Bauwerk Villa auf aktuellen Bauebene aus, WENN genügend
+
+		/** 
+		 * Fügt Bauwerk Hotels auf aktuellen Bauebene aus, WENN genügend
 		 * Slots und Guthaben vorhanden sind. Bei bau zieht Guthaben ab
 		 */
+
 		if (credit < Structure.hotelCost){
 			System.out.println("Nicht genügend Geld vorhanden");
 			return;
@@ -192,10 +196,14 @@ public class City {
 
 	}
 
+	/** Bauen eines Parks */
 	public void buildPark(){
-		/** Fügt Bauwerk Park auf aktuellen Bauebene aus, WENN genügend
+
+		/** 
+		 * Fügt Bauwerk Park auf aktuellen Bauebene aus, WENN genügend
 		 * Slots und Guthaben vorhanden sind. Bei bau zieht Guthaben ab
 		 */
+
 		if (credit < Structure.parkCost ){
 			System.out.println("Nicht genügend Geld vorhanden");
 			return;
@@ -207,11 +215,15 @@ public class City {
 		level.get(actualLevel).insertBuilding(new Infrastructure(Structure.parkSlot, Structure.parkCost, Structure.parkName, Structure.parkLifequality)); 
 		credit -= Structure.parkCost;
 	}		
-	
+
+	/** Bauen eines Ladens */
 	public void buildShop(){
-		/** Fügt Bauwerk Park auf aktuellen Bauebene aus, WENN genügend
+
+		/** 
+		 * Fügt Bauwerk Ladens auf aktuellen Bauebene aus, WENN genügend
 		 * Slots und Guthaben vorhanden sind. Bei bau zieht Guthaben ab
 		 */
+
 		if (credit < Structure.shopCost ){
 			System.out.println("Nicht genügend Geld vorhanden");
 			return;
@@ -224,67 +236,72 @@ public class City {
 		credit -= Structure.shopCost;
 	}	
 
+	/** zerstörrt das letzte Gebäude */
 	public int destroyer() {
-		
-		// zerstörrt ein Gebäude wenn Geld vorhanden ist
-		
+
+		/** 
+		 * Zerstörrung wenn Geld vorhanden
+		 */
+
 		if (credit < Structure.destroyCostBuilding){
 			System.out.println("Nicht genügend Geld vorhanden");
 			return -1;
 		}
-		
-			credit -= Structure.destroyCostBuilding;
+
+		credit -= Structure.destroyCostBuilding;
 		if (level.get(actualLevel).destroyBuilding()){
 			return 0;
 		}
-			
-			
-			return -3;
-		
+
+
+		return -3;
+
 	} 
-	
+
+	/** zerstörrt eine Ebene */
 	public void bigDestroyer() {
-		
-		// Zerstörrt alle gGebäude auf der akutellen Ebene und das aktuelle Level
-		
+
+		/** 
+		 * Zerstörrung: alle Gebäude auf der akutellen Ebene und die Ebene selbst
+		 * Zerstörung wenn Geld vorhanden
+		 */
+
 		if (credit < Structure.destroyCostLevel){
 			System.out.println("Nicht genügend Geld");
 			return;
 		}
-		
+
 		if (level.isEmpty()) {
 			System.out.println("Keine Ebene Vorhanden");
 			return;
 		} 
-		
+
 		int keepDestroying;
 		do { 
 			keepDestroying = destroyer();
 		} while (keepDestroying == 0);
-		
-		
-		
-			// Ist das Richtig so?
+
+
 		level.get(actualLevel).destroyEverything();
-		
+
 		level.remove(actualLevel);
-		
-//		if (level.isEmpty()) {
-//			actualLevel = 0;
-//			return;
-//		} 
+
+		if (level.isEmpty()) {
+			actualLevel = 0;
+			return;
+		} 
 		actualLevel = 0;
 		credit -= Structure.destroyCostLevel;
-	
-} 
-	
-	
-//	public void secret(){
-//		credit = 0;
-//		output();
-//		System.out.println("Du hast verloren. #Spielleiterwillkür");
-//		System.exit(0);
-//	} 
+
+	} 
+
+	/** Spielleiter willkür */
+	public void secret(){
+		credit = 0;
+		output();
+		System.out.println("Du hast verloren. #Spielleiterwillkür");
+		System.exit(0);
+	} 
 
 
 }	

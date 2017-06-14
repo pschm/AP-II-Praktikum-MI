@@ -1,8 +1,10 @@
 package gameUC;
 
+
+
 public class Building {
 
-	
+
 	/**  protected anstatt private damit sie in den Unterklassen benutzt werden kann */
 	protected int slot;
 	protected int cost;
@@ -11,7 +13,7 @@ public class Building {
 
 
 	/** Sinnvoll: Weg lassen? Kein Objekt der Klasse Building erstellen sondern nur Apartment und Infrastructure
-	*Damit es keine Bauwerke an sich gibt sondern nur noch Wohneinheiten und Infra. (außer Standart Konstruktor) */
+	 *Damit es keine Bauwerke an sich gibt sondern nur noch Wohneinheiten und Infra. (außer Standart Konstruktor) */
 	public Building(int slot, int cost, String name ) {
 		age = 0;
 		this.slot = slot;
@@ -21,40 +23,35 @@ public class Building {
 
 	/** Die benötigten Slots für ein Bauwerk */
 	int needSlots(){
-		
-		if (buildname  == Structure.skycraperName){
-			return Structure.skycraperSlot;
-		}
 
-		if (buildname  == Structure.villaName){
-			return Structure.villaSlot;
-		}
-		
-		if (buildname  == Structure.hotelName){
-			return Structure.hotelSlot;
-		}
-		
-		if (buildname  == Structure.marketName){
-			return Structure.marketSlot;
-		}
+		switch(buildname){
 
-		if (buildname  == Structure.parkName){
-			return Structure.parkSlot;
-		}
-		if (buildname  == Structure.shopName){
-			return Structure.shopSlot;
+		case Structure.skycraperName : return Structure.skycraperSlot;
+
+		case Structure.villaName : return Structure.villaSlot;
+
+		case Structure.parkName : return Structure.parkSlot;
+
+		case Structure.marketName : return Structure.marketSlot;
+
+		case Structure.hotelName : return Structure.hotelSlot;
+
+		case Structure.shopName : return Structure.shopSlot;
+
+		default: System.out.println("Fehler mit dem Namen");
+
 		}
 		return 0;
 	}
 
-	/** Standartmiete von dem Bauerwerk */
+	/** Standartmiete von einem Bauerwerk */
 	public int getIncome (){
 		return Structure.rentCost;
 	}
 
-	/** Abzüge für das Bauwerk */
+	/** Abzüge für ein Bauwerk */
 	public int getExpenditure(){
-		return Structure.dutyCost /** mal die Anzahl an actuelle Einwohner*/;
+		return Structure.dutyCost;
 	}
 
 	/** Apartment hat keine Lebensqualität deswegen 0 */
@@ -62,72 +59,55 @@ public class Building {
 		return 0;
 	}
 
-	/** Leute wohnen nicht in Infra deswegen 0 */
+	/** Infrastrukture hat keine Einwohner deswegen 0 */
 	public int getPopulation(){
 		return 0; 
 	}
 
 	/** Zeichnung von den Bauwerken*/
 	public String drawing(){
-		/** Gibt  SSSSVVVV oder MMMMMMPP aus 
-		 * switch-case möglich
+		/** 
+		 * Gibt einen String der das Bauwerk repräsentiert.
+		 * 	Anzahl der Slots bestimmt die Länge.
 		 */
-
 		String s = "";
-		if (buildname == Structure.skycraperName){
+
+		switch(buildname){
+
+		case Structure.skycraperName : 
 			for (int i = 0; i < Structure.skycraperSlot; i++){
 				s += "H";
-			}
-		}
-
-		if (buildname == Structure.villaName){
+			} break;
+		case Structure.villaName : 
 			for (int i = 0; i < Structure.villaSlot; i++){
 				s += "V";
-			}
-		}
-		
-		if (buildname == Structure.hotelName){
-			for (int i = 0; i < Structure.hotelSlot; i++){
-				s += "O";
-			}
-		}
-
-		if (buildname == Structure.marketName){
-			for (int i = 0; i < Structure.marketSlot; i++){
-				s += "S";
-			}
-		}
-
-		if (buildname == Structure.parkName){
+			} break;
+		case Structure.parkName : 
 			for (int i = 0; i < Structure.parkSlot; i++){
 				s += "P";
-			}
-		}
-		
-		if (buildname == Structure.shopName){
+			} break;
+		case Structure.marketName : 			
+			for (int i = 0; i < Structure.marketSlot; i++){
+				s += "S";
+			} break;
+		case Structure.hotelName : 
+			for (int i = 0; i < Structure.hotelSlot; i++){
+				s += "O";
+			} break;
+		case Structure.shopName : 
 			for (int i = 0; i < Structure.shopSlot; i++){
 				s += "E";
-			}
+			} break;
+		default: System.out.println("Fehler mit Name oder Slots");
+
 		}
-
-		/** liefert einen String, der das Bauwerk repräsentiert. Die Länge der
-		Zeichenkette soll dabei der Anzahl der benötigten Slots verwenden. 
-		Eine Villa über 4 Slots könnte z.B. durch „VVVV“ repräsentiert werden*/
-
 		return s;
 	}
 
-
+	/** Führt eine Spielrunde aus.
+	 * Erhöht das Alter des Bauwerks.*/
 	public void round (int totalquality){
-
 		age++;
-		
-		/** führt eine Spielrunde für das Bauwerk aus. 
-		* Dabei wird die aktuelle Lebensqualität der Ebene übergeben,
-		* da hiervon die Einnahmen oder die Einwohnerentwicklung abhängen können. 
-		* Das Alter des Bauwerks wird erhöht
-		* */
-
 	}
-
+	
 }

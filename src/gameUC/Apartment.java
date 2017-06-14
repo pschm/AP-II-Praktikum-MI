@@ -10,14 +10,17 @@ public class Apartment extends Building {
 	private int actualpopulation;
 	private int expectation;
 
-	/** Konstruktor */
+	/** Konstruktor der Klasse Apartment */
 	public Apartment(int slots, int cost, String name, int maxPop, int expect) {
 		super(slots, cost, name);
 		expectation   = expect;
 		maxpopulation = maxPop;
 	}
 
-	/** Pro Runde: Wenn die Erwartungen, das Alter und die totalQuality einen bestimmten Wert über- oder unterschreiten die Einwohnerzahl steigen/sinken */
+	/** Wenn Erwartungen, Alter und Gesamte Lebensqualität einen bestimmten Wert
+	 *  Unterschreitet sinken
+	 *  Überschreitet steigen 
+	 */
 	public void round (int totalquality){
 		
 		super.round(totalquality);
@@ -49,11 +52,12 @@ public class Apartment extends Building {
 		return income;
 	}
 
-	/** Anzahl der Anwohner zurück geben */
+	/** Anzahl der Einwohner */
 	public int getPopulation(){
 		return actualpopulation;
 	}
 
+	/** Ausgaben pro Apartment */
 	public int getExpenditure(){
 		return (Structure.dutyCost * actualpopulation)+Structure.dutyCost;
 	}
