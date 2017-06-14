@@ -29,6 +29,11 @@ public class Building {
 		if (buildname  == Structure.villaName){
 			return Structure.villaSlot;
 		}
+		
+		if (buildname  == Structure.hotelName){
+			return Structure.hotelSlot;
+		}
+		
 		if (buildname  == Structure.marketName){
 			return Structure.marketSlot;
 		}
@@ -50,8 +55,6 @@ public class Building {
 	/** Abzüge für das Bauwerk */
 	public int getExpenditure(){
 		return Structure.dutyCost /** mal die Anzahl an actuelle Einwohner*/;
-		
-
 	}
 
 	/** Apartment hat keine Lebensqualität deswegen 0 */
@@ -80,6 +83,12 @@ public class Building {
 		if (buildname == Structure.villaName){
 			for (int i = 0; i < Structure.villaSlot; i++){
 				s += "V";
+			}
+		}
+		
+		if (buildname == Structure.hotelName){
+			for (int i = 0; i < Structure.hotelSlot; i++){
+				s += "O";
 			}
 		}
 

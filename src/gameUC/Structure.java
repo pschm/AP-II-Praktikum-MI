@@ -12,6 +12,15 @@ public class Structure {
 	/** public static final int skycraperLifequality = 5; 
 	Hochhaus verringert die Lifequality*/
 	
+	/** Hotel */
+	public static final String hotelName = "Hotel";
+	public static final int hotelCost = 1000;
+	public static final int hotelIncome = 2;
+	public static final int hotelSlot = 6;
+	public static final int hotelExpectation = 5;
+	public static final int hotelMaxPopulation = 200;
+	public static final int hotelDutyCost = 150;
+	
 	/** Villa */
 	public static final String villaName = "Villa";
 	public static final int villaCost = 1500;

@@ -174,6 +174,23 @@ public class City {
 		credit -= Structure.marketCost;
 
 	}
+	
+	public void buildHotel(){
+		/** Fügt Bauwerk Villa auf aktuellen Bauebene aus, WENN genügend
+		 * Slots und Guthaben vorhanden sind. Bei bau zieht Guthaben ab
+		 */
+		if (credit < Structure.hotelCost){
+			System.out.println("Nicht genügend Geld vorhanden");
+			return;
+		}
+		if ( level.get(actualLevel).getFreeSlots() < Structure.hotelSlot ){
+			System.out.println("Deine Ebene ist zu klein");
+			return;
+		}
+		level.get(actualLevel).insertBuilding(new Hotel(Structure.hotelSlot, Structure.hotelCost, Structure.hotelName, Structure.hotelMaxPopulation, Structure.hotelExpectation));
+		credit -= Structure.hotelCost;
+
+	}
 
 	public void buildPark(){
 		/** Fügt Bauwerk Park auf aktuellen Bauebene aus, WENN genügend

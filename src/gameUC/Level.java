@@ -2,8 +2,6 @@ package gameUC;
 
 import java.util.ArrayList;
 
-import javax.swing.text.StyleContext.SmallAttributeSet;
-
 public class Level {
 
 	ArrayList<Building> building;
@@ -45,9 +43,9 @@ public class Level {
 		return true;
 
 	}
-	
+
 	public void destroyEverything(){
-		
+
 		// Alle Gebäude einer Ebene sollen gelöscht werden
 		building.clear();
 		freeSlots = Structure.smallLevelSlot;
@@ -65,12 +63,13 @@ public class Level {
 		for(Building b : building){
 			if (b instanceof Apartment){
 				((Apartment) b).round(life);
-
 			} else 
-				if (b instanceof Infrastructure){
-					((Infrastructure) b).round(life);
-
-				}
+				if (b instanceof Hotel){
+					((Hotel) b).round(life);
+				} else 
+					if (b instanceof Infrastructure){
+						((Infrastructure) b).round(life);
+					}
 
 		}
 		/** Lebensqualität berechnen
@@ -106,6 +105,9 @@ public class Level {
 			if ( b instanceof Apartment ) {
 				/** Springt in Klasse: Apartment Methode: getIncome() */
 				pop += ((Apartment) b).getPopulation();
+			} else if ( b instanceof Hotel ) {
+				/** Springt in Klasse: Hotel Methode: getPoplutaion() */
+				pop += ((Hotel) b).getPopulation();
 			} else {
 				/** Springt in Klasse: Building Methode: getIncome() */
 				pop += b.getPopulation();
@@ -125,15 +127,18 @@ public class Level {
 			if ( b instanceof Apartment ) {
 				/** Springt in Klasse: Apartment Methode: getIncome()*/
 				income +=  b.getIncome();
-			} else {
+			} else if ( b instanceof Hotel ) {
+				/** Springt in Klasse: Apartment Methode: getIncome()*/
+				income += ((Hotel) b).getIncome();
+			}else {
 				if (b instanceof Infrastructure){
 					/** Springt in Klasse: Building Methode: getIncome()*/
 					income +=  b.getIncome();
 				}
 				else
-				income += b.getIncome();
+					income += b.getIncome();
 			} 
-			
+
 		}
 
 		return income;
@@ -150,9 +155,12 @@ public class Level {
 			if ( b instanceof Apartment ) {
 				/** Springt in Klasse: Apartment Methode: getIncome() */
 				expen += b.getExpenditure();
+			} else if ( b instanceof Hotel) {
+				/** Springt in Klasse: Hotel Methode: getIncome() */
+				expen += b.getExpenditure();
 			}
 			else 
-			expen += b.getExpenditure();
+				expen += b.getExpenditure();
 		}
 		/** Anzahl der Einahmen der Ebene pro Spielrunde*/
 		return expen;
