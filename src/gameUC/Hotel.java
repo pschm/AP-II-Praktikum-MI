@@ -29,7 +29,7 @@ public class Hotel extends Building{
 			return;
 		}
 		
-		if( maxpop > 200){
+		if( maxpop > Structure.hotelMaxPopulation){
 			actualpopulation = Structure.hotelMaxPopulation;
 			return;
 		}

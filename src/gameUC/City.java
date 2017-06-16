@@ -124,6 +124,10 @@ public class City {
 			System.out.println("Nicht genügend Geld vorhanden");
 			return;
 		}
+		if (level.isEmpty()){
+			System.out.println("Keine Ebene vorhanden -  Baue erst eine Ebene");
+			return;
+		}
 		if ( level.get(actualLevel).getFreeSlots() < Structure.skycraperSlot ){
 			System.out.println("Deine Ebene ist zu klein");
 			return;
@@ -143,6 +147,10 @@ public class City {
 
 		if (credit < Structure.villaCost){
 			System.out.println("Nicht genügend Geld vorhanden");
+			return;
+		}
+		if (level.isEmpty()){
+			System.out.println("Keine Ebene vorhanden -  Baue erst eine Ebene");
 			return;
 		}
 		if ( level.get(actualLevel).getFreeSlots() < Structure.villaSlot ){
@@ -166,6 +174,10 @@ public class City {
 			System.out.println("Nicht genügend Geld vorhanden");
 			return;
 		}
+		if (level.isEmpty()){
+			System.out.println("Keine Ebene vorhanden -  Baue erst eine Ebene");
+			return;
+		}
 		if ( level.get(actualLevel).getFreeSlots() < Structure.marketSlot ){
 			System.out.println("Deine Ebene ist zu klein");
 			return;
@@ -185,6 +197,10 @@ public class City {
 
 		if (credit < Structure.hotelCost){
 			System.out.println("Nicht genügend Geld vorhanden");
+			return;
+		}
+		if (level.isEmpty()){
+			System.out.println("Keine Ebene vorhanden -  Baue erst eine Ebene");
 			return;
 		}
 		if ( level.get(actualLevel).getFreeSlots() < Structure.hotelSlot ){
@@ -208,6 +224,10 @@ public class City {
 			System.out.println("Nicht genügend Geld vorhanden");
 			return;
 		}
+		if (level.isEmpty()){
+			System.out.println("Keine Ebene vorhanden -  Baue erst eine Ebene");
+			return;
+		}
 		if ( level.get(actualLevel).getFreeSlots() < Structure.parkSlot ){
 			System.out.println("Deine Ebene ist zu klein");
 			return;
@@ -228,6 +248,10 @@ public class City {
 			System.out.println("Nicht genügend Geld vorhanden");
 			return;
 		}
+		if (level.isEmpty()){
+			System.out.println("Keine Ebene vorhanden -  Baue erst eine Ebene");
+			return;
+		}
 		if ( level.get(actualLevel).getFreeSlots() < Structure.shopSlot ){
 			System.out.println("Deine Ebene ist zu klein");
 			return;
@@ -246,10 +270,14 @@ public class City {
 		if (credit < Structure.destroyCostBuilding){
 			System.out.println("Nicht genügend Geld vorhanden");
 			return -1;
-		}
+		} else
+		if (level.isEmpty()){
+			System.out.println("Es ist keine Ebene vorhanden");
+			return -1;
+		} else 
 
-		credit -= Structure.destroyCostBuilding;
 		if (level.get(actualLevel).destroyBuilding()){
+			credit -= Structure.destroyCostBuilding;
 			return 0;
 		}
 
@@ -303,5 +331,8 @@ public class City {
 		System.exit(0);
 	} 
 
+	public int getCredit(){
+		return credit;
+	}
 
 }	

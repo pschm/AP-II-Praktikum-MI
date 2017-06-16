@@ -15,6 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 import gameUC.City;
 import gameUC.Structure;
@@ -58,7 +59,7 @@ public class JGameFrame extends JFrame {
 		JPanel buildPanel   = new JPanel (new FlowLayout());
 		JPanel gameUCPanel 	= new JCityPanel(700, 400);
 		JPanel roundPanel	= new JPanel (new FlowLayout());
-		JFrame roundFrame	= new JFrame ("Rundenanzahl");
+//		JFrame roundFrame	= new JFrame ("Rundenanzahl");
 		JPanel wohnPanel    = new JPanel (new FlowLayout());
 		JPanel infraPanel   = new JPanel (new FlowLayout());
 		
@@ -74,6 +75,7 @@ public class JGameFrame extends JFrame {
 		JButton eBuild	 = new JButton("Einkaufsladen");
 		JButton hBuild	 = new JButton("Hotel");
 		JButton btnExit  = new JButton("Exit");
+
 
 		JButton lHigh    = new JButton("Ebende runter");
 		JButton lLow     = new JButton("Ebende hoch");
@@ -104,7 +106,7 @@ public class JGameFrame extends JFrame {
 		// Fehlermeldung wenn kein Ebene Vorhaben aber Gebäude gebaut werden soll	
 		Font f  = new Font(Font.SANS_SERIF, Font.BOLD, 12);
 		Font f1 = new Font(Font.SANS_SERIF, Font.PLAIN, 18);
-		Font f2 = new Font(Font.SANS_SERIF, Font.BOLD, 20);
+//		Font f2 = new Font(Font.SANS_SERIF, Font.BOLD, 20);
 
 		sLevel.setFont(f);
 		mLevel.setFont(f);
@@ -169,23 +171,29 @@ public class JGameFrame extends JFrame {
 		wohnPanel.add(hBuild);
 		gamePanel.add(wohnPanel);
 		gamePanel.add(infraPanel);
+		
 	
 
 		btnStart.addActionListener( new ActionListener () {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				roundFrame.setSize(400, 200);
-				roundFrame.setVisible(true);
-				roundFrame.setTitle("Start");
-				JPanel info  = new JPanel();
-				JLabel round = new JLabel("Wie viele Runden willst du spielen?");
-				round.setFont(f2);
-				roundFrame.add(info.add(round));
+//				roundFrame.setSize(400, 200);
+//				roundFrame.setVisible(true);
+//				roundFrame.setTitle("Start");
+//				
+//				JPanel info  = new JPanel();
+//				JLabel round = new JLabel("Wie viele Runden willst du spielen?");
+//				JTextField tfRound = new JTextField();
+//				
+//				tfRound.setSize(50, 100);
+//				round.setFont(f2);
+//				info.add(round);
+//				info.add(tfRound);
+//				roundFrame.add(info);
 				
-				
-//				c.round(1);
-//				lbInfo.setText("Guthabenbeträgt: $ " + c.getCredit());
-//				c.output();
+				c.round(1);
+				lbInfo.setText("Guthaben beträgt: $ " + c.getCredit());
+				c.output();
 				
 			}
 		});
@@ -215,6 +223,7 @@ public class JGameFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				c.higher();
+				lbInfo.setText("Guthaben beträgt: $ " + c.getCredit());
 				c.output();
 			}
 		});
@@ -223,6 +232,7 @@ public class JGameFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				c.lower();
+				lbInfo.setText("Guthaben beträgt: $ " + c.getCredit());
 				c.output();
 
 			}
@@ -232,6 +242,7 @@ public class JGameFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				c.destroyer();
+				lbInfo.setText("Guthaben beträgt: $ " + c.getCredit());
 				c.output();
 
 			}
@@ -241,6 +252,7 @@ public class JGameFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				c.bigDestroyer();
+				lbInfo.setText("Guthaben beträgt: $ " + c.getCredit());
 				c.output();
 
 			}
@@ -250,6 +262,7 @@ public class JGameFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				c.buildLevel(Structure.smallLevelSlot);
+				lbInfo.setText("Guthaben beträgt: $ " + c.getCredit());
 				c.output();
 			}
 		});
@@ -258,6 +271,7 @@ public class JGameFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				c.buildLevel(Structure.mediumLevelSlot);
+				lbInfo.setText("Guthaben beträgt: $ " + c.getCredit());
 				c.output();
 
 			}
@@ -267,6 +281,7 @@ public class JGameFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				c.buildLevel(Structure.bigLevelSlot);
+				lbInfo.setText("Guthaben beträgt: $ " + c.getCredit());
 				c.output();
 
 			}
@@ -276,6 +291,7 @@ public class JGameFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				c.buildSkycraper();
+				lbInfo.setText("Guthaben beträgt: $ " + c.getCredit());
 				c.output();
 
 			}
@@ -285,6 +301,7 @@ public class JGameFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				c.buildVilla();
+				lbInfo.setText("Guthaben beträgt: $ " + c.getCredit());
 				c.output();
 
 			}
@@ -294,6 +311,7 @@ public class JGameFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				c.buildPark();
+				lbInfo.setText("Guthaben beträgt: $ " + c.getCredit());
 				c.output();
 			}
 		});
@@ -302,6 +320,7 @@ public class JGameFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				c.buildMarket();
+				lbInfo.setText("Guthaben beträgt: $ " + c.getCredit());
 				c.output();
 			}
 		});
@@ -310,17 +329,20 @@ public class JGameFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				c.buildShop();
+				lbInfo.setText("Guthaben beträgt: $ " + c.getCredit());
 				c.output();
 			}
 		});
 		
-		eBuild.addActionListener( new ActionListener () {
+		hBuild.addActionListener( new ActionListener () {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				c.buildHotel();
+				lbInfo.setText("Guthaben beträgt: $ " + c.getCredit());
 				c.output();
 			}
 		});
+		
 
 	}
 }

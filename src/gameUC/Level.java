@@ -34,14 +34,24 @@ public class Level {
 		if (building.isEmpty()) {
 			System.out.println("Kein Gebäude Vorhanden");
 			return false;
-		} 
+		}  
 		int index = building.size() - 1;
 
 		Building b  = building.get(index);
 		building.remove(index);
-		freeSlots += b.needSlots();
+		
+		int lose = 0;
+		if (b instanceof Infrastructure){
+			lose += ((Infrastructure) b).getPopulation();
+			System.out.println("Die Ebene hat " +lose+ " Einwohner verloren");
+			
+		}
+		
+		freeSlots += b.needSlots(); 
 		return true;
-
+		
+		
+		
 	}
 
 	public void destroyEverything(){
