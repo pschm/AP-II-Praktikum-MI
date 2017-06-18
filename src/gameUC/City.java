@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class City {
 
-	ArrayList<Level> level;
+	private ArrayList<Level> level;
 	private int actualLevel;
 	int credit = Structure.creditBeginn;
 
@@ -17,6 +17,11 @@ public class City {
 	/** Die aktuelle Ebene */
 	public int getActualLevel() {
 		return actualLevel;
+	}
+	
+	/** Level */
+	public ArrayList<Level> getLevel(){
+		return level;
 	}
 
 

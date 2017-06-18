@@ -1,21 +1,17 @@
 package GUI;
 
-//import java.awt.BorderLayout;
+
 import java.awt.FlowLayout;
 import java.awt.Font;
-//import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-//import java.util.Timer;
-//import java.util.TimerTask;
 
-//import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
+import javax.swing.Timer;
 
 import gameUC.City;
 import gameUC.Structure;
@@ -27,14 +23,15 @@ public class JGameFrame extends JFrame {
 	 * 
 	 * optional Bank Credit mit (Zins)Kosten pro Runden 
 	 * */
-	
-	
+
+
 	protected int xSize;
 	protected int ySize;
 	protected String titel;
 	protected boolean visible;
 	private City c;
 	JCityPanel gameUCPanel;
+	private int playround = 0;
 
 	public JGameFrame(String newTitel, int newXSize, int newYSize, boolean newVisiblity, City c){
 
@@ -43,27 +40,28 @@ public class JGameFrame extends JFrame {
 		setSize(newXSize, newYSize);
 		setTitle(newTitel);		
 		buildGUI();
-		
+
 		setVisible(newVisiblity);
+		//gameUCPanel = new JCityPanel(700, 400, c);
 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 	}
 
 	public void buildGUI(){
-		
+
 		JPanel gamePanel 	= new JPanel (new FlowLayout());
 		JPanel controlPanel = new JPanel (new FlowLayout());
 		JPanel conLevPanel	= new JPanel (new FlowLayout());
 		JPanel levelPanel   = new JPanel (new FlowLayout());
 		JPanel buildPanel   = new JPanel (new FlowLayout());
-		JPanel gameUCPanel 	= new JCityPanel(700, 400);
+		gameUCPanel 	    = new JCityPanel(700, 400, c);
 		JPanel roundPanel	= new JPanel (new FlowLayout());
-//		JFrame roundFrame	= new JFrame ("Rundenanzahl");
+		//		JFrame roundFrame	= new JFrame ("Rundenanzahl");
 		JPanel wohnPanel    = new JPanel (new FlowLayout());
 		JPanel infraPanel   = new JPanel (new FlowLayout());
-		
-			
+
+
 		JButton btnStart = new JButton("Start");
 		JButton sLevel 	 = new JButton("kleine");
 		JButton mLevel   = new JButton("mittlere");
@@ -80,55 +78,51 @@ public class JGameFrame extends JFrame {
 		JButton lHigh    = new JButton("Ebende runter");
 		JButton lLow     = new JButton("Ebende hoch");
 		JLabel lbmenue   = new JLabel("Menüsteuerung");
-		
+
 		/** Runden müssen noch gezählt werden */
-		JLabel lbRInfo	 = new JLabel("Du hast .... Runden gespielt");
 		JLabel lbInfo    = new JLabel("Guthaben beträgt: $ " + Structure.creditBeginn);
 		JLabel lbLevel	 = new JLabel("Was für eine Bauebene willst du bauen?");
 		JLabel lbBuild	 = new JLabel("Was für ein Gebäude willst du bauen?");
 		JLabel lbWohn	 = new JLabel("Wohneinheit");
 		JLabel lbInfra	 = new JLabel("Infratruktur");
-		
+
 		/** Hierfür müssten noch Kosten anfallen*/
 		JButton destry1  = new JButton("Gebäude zerstören");
 		JButton destry2  = new JButton("Ebene zerstören");
-		
+
 		/** Sollte zu Beginn als extra Frame auf tauchen*/
 		JTextArea taexplain = new JTextArea(
-				  "-------------------------------------Willkommen in Underground City-------------------------------------\n"
-				+ "Zu Beginn gibt es eine kleine Einführung\n"
-				+ "Als aller erstes baust du eine Ebene.\n"
-				+ "Wenn eine Ebene erstellt wurde kannst du Gebäude bauen.\n"
-				+ "Achte auf dein Geld, wenn du Schulden generierst hast du verloren.\n"
-				+ "Du benötigst die Lebensqualität von Parks, Supermärkten und Einkaufsläden damit \n"
-				+ "dein Hochhaus oder Villa Einwohner generieren kann");
-		// Spielverloren wenn Guthaben im Minus
-		// Fehlermeldung wenn kein Ebene Vorhaben aber Gebäude gebaut werden soll	
+				"-------------------------------------Willkommen in Underground City-------------------------------------\n"
+						+ "Zu Beginn gibt es eine kleine Einführung\n"
+						+ "Als aller erstes baust du eine Ebene.\n"
+						+ "Wenn eine Ebene erstellt wurde kannst du Gebäude bauen.\n"
+						+ "Achte auf dein Geld, wenn du Schulden generierst hast du verloren.\n"
+						+ "Du benötigst die Lebensqualität von Parks, Supermärkten und Einkaufsläden damit \n"
+						+ "dein Hochhaus, deine Villa oder dein Hotel Einwohner generieren kann");
 		Font f  = new Font(Font.SANS_SERIF, Font.BOLD, 12);
 		Font f1 = new Font(Font.SANS_SERIF, Font.PLAIN, 18);
-//		Font f2 = new Font(Font.SANS_SERIF, Font.BOLD, 20);
+		//		Font f2 = new Font(Font.SANS_SERIF, Font.BOLD, 20);
 
 		sLevel.setFont(f);
 		mLevel.setFont(f);
 		bLevel.setFont(f);
-		
+
 		sBuild.setFont(f);
 		vBuild.setFont(f);
 		pBuild.setFont(f);
 		mBuild.setFont(f);
 		eBuild.setFont(f);
 		hBuild.setFont(f);
-		
+
 		btnStart.setFont(f);
 		btnExit.setFont(f);	
 		destry1.setFont(f);
 		destry2.setFont(f);
 		lHigh.setFont(f);	
 		lLow.setFont(f);
-		
-		
+
+
 		lbInfo.setFont(f1);
-		lbRInfo.setFont(f1);
 		lbmenue.setFont(f1);
 		lbBuild.setFont(f1);
 		lbLevel.setFont(f1);
@@ -140,7 +134,6 @@ public class JGameFrame extends JFrame {
 		gamePanel.add(gameUCPanel);
 		gamePanel.add(taexplain);
 		gamePanel.add(lbInfo);
-		gamePanel.add(lbRInfo);
 		gamePanel.add(controlPanel);
 		gamePanel.add(conLevPanel);
 		gamePanel.add(levelPanel);
@@ -154,7 +147,7 @@ public class JGameFrame extends JFrame {
 		conLevPanel.add(lLow);
 		conLevPanel.add(destry1);
 		conLevPanel.add(destry2);
-		
+
 		levelPanel.add(lbLevel);
 		levelPanel.add(sLevel);
 		levelPanel.add(mLevel);
@@ -171,39 +164,47 @@ public class JGameFrame extends JFrame {
 		wohnPanel.add(hBuild);
 		gamePanel.add(wohnPanel);
 		gamePanel.add(infraPanel);
-		
-	
 
-		btnStart.addActionListener( new ActionListener () {
+		ActionListener alRoundStart = new ActionListener() {
+ 			
+ 			@Override
+ 			public void actionPerformed(ActionEvent e) {
+ 				c.round(1);
+				lbInfo.setText("Guthaben: $ " +c.getCredit());
+				
+				playround += 1;
+				lbInfo.setText("Du hast "+playround+" Runden gespielt \n"
+							+ "Guthaben beträgt: $ " +c.getCredit());
+ 				c.output();
+				gameUCPanel.updateDrawing();
+ 				repaint();
+ 			}
+ 		};
+ 		
+		Timer timer = new Timer(1500, alRoundStart);
+		
+		btnStart.addActionListener(new ActionListener() {
+			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-//				roundFrame.setSize(400, 200);
-//				roundFrame.setVisible(true);
-//				roundFrame.setTitle("Start");
-//				
-//				JPanel info  = new JPanel();
-//				JLabel round = new JLabel("Wie viele Runden willst du spielen?");
-//				JTextField tfRound = new JTextField();
-//				
-//				tfRound.setSize(50, 100);
-//				round.setFont(f2);
-//				info.add(round);
-//				info.add(tfRound);
-//				roundFrame.add(info);
-				
-				c.round(1);
-				lbInfo.setText("Guthaben beträgt: $ " + c.getCredit());
-				c.output();
-				
+				if(timer.isRunning()) {
+					btnStart.setText("Spiel Starten");
+					timer.stop();
+				} else {
+					btnStart.setText("Spiel Beenden");
+					timer.start();
+					
+				}
 			}
 		});
+		
 
 		btnExit.addActionListener( new ActionListener () {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				c.output();
 				System.out.println("Spiel wird verlassen");
-				
+
 				System.exit(0);
 				/** Hier könnte sich noch ein Frame öffnen welches eine Bestätigung will
 				 * 
@@ -214,17 +215,19 @@ public class JGameFrame extends JFrame {
 				 *  Bsp: Wollen sie sicher das Spiel beenden?
 				 *  			[OK]	[Cancel]
 				 */
-				
+
 			}
 		});
-		
+
 
 		lHigh.addActionListener( new ActionListener () {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				c.higher();
-				lbInfo.setText("Guthaben beträgt: $ " + c.getCredit());
+				lbInfo.setText("Du hast "+playround+" Runden gespielt \n"
+						+ "Guthaben beträgt: $ " +c.getCredit());
 				c.output();
+
 			}
 		});
 
@@ -232,8 +235,10 @@ public class JGameFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				c.lower();
-				lbInfo.setText("Guthaben beträgt: $ " + c.getCredit());
+				lbInfo.setText("Du hast "+playround+" Runden gespielt \n"
+							+ "Guthaben beträgt: $ " +c.getCredit());
 				c.output();
+
 
 			}
 		});
@@ -242,8 +247,11 @@ public class JGameFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				c.destroyer();
-				lbInfo.setText("Guthaben beträgt: $ " + c.getCredit());
+				lbInfo.setText("Du hast "+playround+" Runden gespielt \n"
+						+ "Guthaben beträgt: $ " +c.getCredit());
 				c.output();
+				gameUCPanel.updateDrawing();
+				repaint();
 
 			}
 		});
@@ -252,18 +260,24 @@ public class JGameFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				c.bigDestroyer();
-				lbInfo.setText("Guthaben beträgt: $ " + c.getCredit());
+				lbInfo.setText("Du hast "+playround+" Runden gespielt \n"
+						+ "Guthaben beträgt: $ " +c.getCredit());
 				c.output();
+				gameUCPanel.updateDrawing();
+				repaint();
 
 			}
 		});
-		
+
 		sLevel.addActionListener( new ActionListener () {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				c.buildLevel(Structure.smallLevelSlot);
-				lbInfo.setText("Guthaben beträgt: $ " + c.getCredit());
+				lbInfo.setText("Du hast "+playround+" Runden gespielt \n"
+						+ "Guthaben beträgt: $ " +c.getCredit());
 				c.output();
+				gameUCPanel.updateDrawing();
+				repaint();
 			}
 		});
 
@@ -271,8 +285,11 @@ public class JGameFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				c.buildLevel(Structure.mediumLevelSlot);
-				lbInfo.setText("Guthaben beträgt: $ " + c.getCredit());
+				lbInfo.setText("Du hast "+playround+" Runden gespielt \n"
+						+ "Guthaben beträgt: $ " +c.getCredit());
 				c.output();
+				gameUCPanel.updateDrawing();
+				repaint();
 
 			}
 		});
@@ -281,8 +298,11 @@ public class JGameFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				c.buildLevel(Structure.bigLevelSlot);
-				lbInfo.setText("Guthaben beträgt: $ " + c.getCredit());
+				lbInfo.setText("Du hast "+playround+" Runden gespielt \n"
+						+ "Guthaben beträgt: $ " +c.getCredit());
 				c.output();
+				gameUCPanel.updateDrawing();
+				repaint();
 
 			}
 		});
@@ -291,8 +311,12 @@ public class JGameFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				c.buildSkycraper();
-				lbInfo.setText("Guthaben beträgt: $ " + c.getCredit());
+				lbInfo.setText("Du hast "+playround+" Runden gespielt \n"
+						+ "Guthaben beträgt: $ " +c.getCredit());
 				c.output();
+				gameUCPanel.updateDrawing();
+				repaint();
+
 
 			}
 		});
@@ -301,8 +325,12 @@ public class JGameFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				c.buildVilla();
-				lbInfo.setText("Guthaben beträgt: $ " + c.getCredit());
+				lbInfo.setText("Du hast "+playround+" Runden gespielt \n"
+						+ "Guthaben beträgt: $ " +c.getCredit());
 				c.output();
+				gameUCPanel.updateDrawing();
+				repaint();
+
 
 			}
 		});
@@ -311,8 +339,12 @@ public class JGameFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				c.buildPark();
-				lbInfo.setText("Guthaben beträgt: $ " + c.getCredit());
+				lbInfo.setText("Du hast "+playround+" Runden gespielt \n"
+						+ "Guthaben beträgt: $ " +c.getCredit());
 				c.output();
+				gameUCPanel.updateDrawing();
+				repaint();
+
 			}
 		});
 
@@ -320,29 +352,41 @@ public class JGameFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				c.buildMarket();
-				lbInfo.setText("Guthaben beträgt: $ " + c.getCredit());
+				lbInfo.setText("Du hast "+playround+" Runden gespielt \n"
+						+ "Guthaben beträgt: $ " +c.getCredit());
 				c.output();
+				gameUCPanel.updateDrawing();
+				repaint();
+
 			}
 		});
-		
+
 		eBuild.addActionListener( new ActionListener () {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				c.buildShop();
-				lbInfo.setText("Guthaben beträgt: $ " + c.getCredit());
+				lbInfo.setText("Du hast "+playround+" Runden gespielt \n"
+						+ "Guthaben beträgt: $ " +c.getCredit());
 				c.output();
+				gameUCPanel.updateDrawing();
+				repaint();
+
 			}
 		});
-		
+
 		hBuild.addActionListener( new ActionListener () {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				c.buildHotel();
-				lbInfo.setText("Guthaben beträgt: $ " + c.getCredit());
+				lbInfo.setText("Du hast "+playround+" Runden gespielt \n"
+						+ "Guthaben beträgt: $ " +c.getCredit());
 				c.output();
+				gameUCPanel.updateDrawing();
+				repaint();
+
 			}
 		});
-		
+
 
 	}
 }

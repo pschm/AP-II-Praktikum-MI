@@ -97,13 +97,15 @@ public class Level {
 	}
 
 	/** Gibt Informationen der Ebene aus (Anz Einwohner, Lebenquali, Einnahmen und Ausgaben) */
-	public void drawInfo(){
+	public String drawInfo(){
 		int pop = getPopulation();
 		int life = getLifequality();
 		int income = getIncome();
 		int expen  = getExpenditure();
-
-		System.out.print(" Einwohner: " + pop + " Einnahmen: " + income + " Kosten: " + expen +  " Lebenqualität: " + life + "\n" );
+		
+		String s = " Einwohner: " + pop + " Einnahmen: " + income + " Kosten: " + expen +  " Lebenqualität: " + life ;
+		System.out.print( s + "\n" );
+		return s;
 	}
 
 	/** Anzahl der Einwohner der Ebene */
