@@ -33,7 +33,7 @@ public class App {
 
 	static int f = 0;
 	static City st = new City();
-	static JGameFrame gameUC = new JGameFrame("Underground City", 800, 1000, true, st);	
+	static JGameFrame gameUC = new JGameFrame("Underground City", 1300, 1000, true, st);	
 	static Scanner scanner = new Scanner(System.in);
 	static int v = 0;
 		

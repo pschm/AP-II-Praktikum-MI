@@ -26,14 +26,15 @@ public class JCityPanel extends JPanel {
 		setPreferredSize(new Dimension(newXSize, newYSize));
 		buildGui();
 	}
-	
+
 	public void drawString(){
 		z.output();
 	}
-	
+
 	public void paintComponent (Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
 		Graphics2D g2 = (Graphics2D) g;
+		Graphics2D g3 = (Graphics2D) g;
 		super.paintComponent(g);
 
 		g2d.setColor(Color.WHITE);
@@ -41,19 +42,8 @@ public class JCityPanel extends JPanel {
 		g2d.setColor(Color.BLACK);
 		g2d.drawRect(5, 5, getWidth()-10, getHeight()-10 );
 
-			g2.setColor(Color.LIGHT_GRAY);
-			g2.fillRect(20, 20, 50, 50);
-			
-	}
-
-	// Pro Slots ein fillRect(50, 200)
-
-	
-	
-	public void buildGui(){
-		
 		ArrayList<Level> nl = z.getLevel();
-		
+
 		/**
 		 * Schleife über alle Ebenen
 		 * 
@@ -64,34 +54,151 @@ public class JCityPanel extends JPanel {
 		for( Level l : nl){
 			JPanel datenPanel = new JPanel(new GridLayout());
 			JPanel drawingPanel = new JPanel(new GridLayout());
+
 			JLabel infoLabel = new JLabel(l.drawInfo());
 			infoLabel.setFont(labelFont);
 			datenPanel.add(infoLabel);
-			
-//			int size = nl.size();
-//			if ( size  == Structure.bigLevelSlot)
-			
-			
-				
-				
-				
+
+
+			String occu = l.drawSlots();
+
+			int q = 0;
+			int yLevel = 20;
+			int freeSlots = l.getNumbSlots();
+
+
+			if (freeSlots == Structure.smallLevelSlot)
+			{
+				g3.setColor(Color.LIGHT_GRAY);
+				g3.fillRect(20 , yLevel, 50*Structure.smallLevelSlot, 50);
+			}
+
+			if (freeSlots == Structure.mediumLevelSlot)
+			{
+				g3.setColor(Color.LIGHT_GRAY);
+				g3.fillRect(20 , yLevel, 50*Structure.mediumLevelSlot, 50);
+			}
+
+			if (freeSlots == Structure.bigLevelSlot)
+			{
+				g3.setColor(Color.LIGHT_GRAY);
+				g3.fillRect(20 , yLevel, 50*Structure.bigLevelSlot, 50);
+			}
+
+
+
+			for(int i = 0; i < occu.length(); i++){
+				String sign = "" + occu.charAt(i);
+
+				switch(sign){
+
+				case "H": 
+					//					for (int f = 0; f < Structure.skycraperSlot; f++){
+
+					g2.setColor(Color.BLACK);
+					g2.fillRect(20 + q, yLevel, 50, 50);
+					g2.setColor(Color.WHITE);
+					g2.drawRect(20 + q, yLevel, 50, 50);
+					datenPanel.setLocation(250, 50);
+					q += 50;
+					//					}	
+
+					break;
+
+				case "S": 
+					g2.setColor(Color.BLACK);
+					g2.fillRect(20 + q, yLevel, 50, 50);
+					g2.setColor(Color.WHITE);
+					g2.drawRect(20 + q, yLevel, 50, 50);
+					datenPanel.setLocation(250, 50);
+					q += 50;
+
+					break;
+
+				case "E": 
+					g2.setColor(Color.BLACK);
+					g2.fillRect(20 + q, yLevel, 50, 50);
+					g2.setColor(Color.WHITE);
+					g2.drawRect(20 + q, yLevel, 50, 50);
+					datenPanel.setLocation(250, 50);
+					q += 50;
+
+					break;
+
+				case "V": 
+					g2.setColor(Color.BLACK);
+					g2.fillRect(20 + q, yLevel, 50, 50);
+					g2.setColor(Color.WHITE);
+					g2.drawRect(20 + q, yLevel, 50, 50);
+					datenPanel.setLocation(250, 50);
+					q += 50;
+
+					break;
+
+				case "O": 
+
+					g2.setColor(Color.BLACK);
+					g2.fillRect(20 + q, yLevel, 50, 50);
+					g2.setColor(Color.WHITE);
+					g2.drawRect(20 + q, yLevel, 50, 50);
+					datenPanel.setLocation(250, 50);
+					q += 50;
+
+
+					break;
+
+				case "P": 
+
+					g2.setColor(Color.BLACK);
+					g2.fillRect(20 + q, yLevel, 50, 50);
+					g2.setColor(Color.WHITE);
+					g2.drawRect(20 + q, yLevel, 50, 50);
+					datenPanel.setLocation(250, 50);
+					q += 50;
+
+					break;
+					//
+					//				default:
+					//					for (int f = 0; f < l.getFreeSlots() ; f++){
+					//
+					//						g2.setColor(Color.GRAY);
+					//						g2.fillRect(20 + q, 20, 50, 50);
+					//						datenPanel.setLocation(250, 50);
+					//						q += 50;
+					//					}	
+
+				}
+
+			}
+
+
+
 			this.add(drawingPanel);
 			this.add(datenPanel);
 		}
-		
+
 		/**
 		 * Pro Ebene: Was bin ich?
 		 * Zum Testen: String kette aus der Console übernehmen 
 		 * Informationen jeder Ebene
 		 */
+	}
+
+	// Pro Slots ein fillRect(50, 200)
+
+
+
+	public void buildGui(){
+
+
 		repaint();
 	}
-	
+
 	public void updateDrawing(){
 		removeAll();
 		buildGui();
-		
+
 	}
-	
-	
+
+
 }

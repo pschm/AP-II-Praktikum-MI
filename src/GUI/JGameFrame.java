@@ -55,9 +55,8 @@ public class JGameFrame extends JFrame {
 		JPanel conLevPanel	= new JPanel (new FlowLayout());
 		JPanel levelPanel   = new JPanel (new FlowLayout());
 		JPanel buildPanel   = new JPanel (new FlowLayout());
-		gameUCPanel 	    = new JCityPanel(700, 400, c);
+		gameUCPanel 	    = new JCityPanel(1200, 600, c);
 		JPanel roundPanel	= new JPanel (new FlowLayout());
-		//		JFrame roundFrame	= new JFrame ("Rundenanzahl");
 		JPanel wohnPanel    = new JPanel (new FlowLayout());
 		JPanel infraPanel   = new JPanel (new FlowLayout());
 
@@ -73,32 +72,27 @@ public class JGameFrame extends JFrame {
 		JButton eBuild	 = new JButton("Einkaufsladen");
 		JButton hBuild	 = new JButton("Hotel");
 		JButton btnExit  = new JButton("Exit");
-
-
 		JButton lHigh    = new JButton("Ebende runter");
 		JButton lLow     = new JButton("Ebende hoch");
 		JLabel lbmenue   = new JLabel("Menüsteuerung");
-
-		/** Runden müssen noch gezählt werden */
-		JLabel lbInfo    = new JLabel("Guthaben beträgt: $ " + Structure.creditBeginn);
+		JLabel lbInfo    = new JLabel("Du hast "+playround+" Runden gespielt \n" + "Guthaben beträgt: $ " + Structure.creditBeginn);
 		JLabel lbLevel	 = new JLabel("Was für eine Bauebene willst du bauen?");
 		JLabel lbBuild	 = new JLabel("Was für ein Gebäude willst du bauen?");
 		JLabel lbWohn	 = new JLabel("Wohneinheit");
 		JLabel lbInfra	 = new JLabel("Infratruktur");
 
-		/** Hierfür müssten noch Kosten anfallen*/
 		JButton destry1  = new JButton("Gebäude zerstören");
 		JButton destry2  = new JButton("Ebene zerstören");
 
 		/** Sollte zu Beginn als extra Frame auf tauchen*/
-		JTextArea taexplain = new JTextArea(
-				"-------------------------------------Willkommen in Underground City-------------------------------------\n"
-						+ "Zu Beginn gibt es eine kleine Einführung\n"
-						+ "Als aller erstes baust du eine Ebene.\n"
-						+ "Wenn eine Ebene erstellt wurde kannst du Gebäude bauen.\n"
-						+ "Achte auf dein Geld, wenn du Schulden generierst hast du verloren.\n"
-						+ "Du benötigst die Lebensqualität von Parks, Supermärkten und Einkaufsläden damit \n"
-						+ "dein Hochhaus, deine Villa oder dein Hotel Einwohner generieren kann");
+//		JTextArea taexplain = new JTextArea(
+//				"-------------------------------------Willkommen in Underground City-------------------------------------\n"
+//						+ "Zu Beginn gibt es eine kleine Einführung\n"
+//						+ "Als aller erstes baust du eine Ebene.\n"
+//						+ "Wenn eine Ebene erstellt wurde kannst du Gebäude bauen.\n"
+//						+ "Achte auf dein Geld, wenn du Schulden generierst hast du verloren.\n"
+//						+ "Du benötigst die Lebensqualität von Parks, Supermärkten und Einkaufsläden damit \n"
+//						+ "dein Hochhaus, deine Villa oder dein Hotel Einwohner generieren kann");
 		Font f  = new Font(Font.SANS_SERIF, Font.BOLD, 12);
 		Font f1 = new Font(Font.SANS_SERIF, Font.PLAIN, 18);
 		//		Font f2 = new Font(Font.SANS_SERIF, Font.BOLD, 20);
@@ -106,33 +100,29 @@ public class JGameFrame extends JFrame {
 		sLevel.setFont(f);
 		mLevel.setFont(f);
 		bLevel.setFont(f);
-
 		sBuild.setFont(f);
 		vBuild.setFont(f);
 		pBuild.setFont(f);
 		mBuild.setFont(f);
 		eBuild.setFont(f);
 		hBuild.setFont(f);
-
 		btnStart.setFont(f);
 		btnExit.setFont(f);	
 		destry1.setFont(f);
 		destry2.setFont(f);
 		lHigh.setFont(f);	
 		lLow.setFont(f);
-
-
 		lbInfo.setFont(f1);
 		lbmenue.setFont(f1);
 		lbBuild.setFont(f1);
 		lbLevel.setFont(f1);
 		lbInfra.setFont(f1);
 		lbWohn.setFont(f1);
-		taexplain.setFont(f1);
+//		taexplain.setFont(f1);
 
 		add(gamePanel);
 		gamePanel.add(gameUCPanel);
-		gamePanel.add(taexplain);
+//		gamePanel.add(taexplain);
 		gamePanel.add(lbInfo);
 		gamePanel.add(controlPanel);
 		gamePanel.add(conLevPanel);
@@ -157,11 +147,11 @@ public class JGameFrame extends JFrame {
 		wohnPanel.add(lbWohn);
 		wohnPanel.add(sBuild);
 		wohnPanel.add(vBuild);
+		wohnPanel.add(hBuild);
 		infraPanel.add(lbInfra);
 		infraPanel.add(pBuild);
 		infraPanel.add(mBuild);
 		infraPanel.add(eBuild);
-		wohnPanel.add(hBuild);
 		gamePanel.add(wohnPanel);
 		gamePanel.add(infraPanel);
 

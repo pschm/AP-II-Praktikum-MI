@@ -5,7 +5,7 @@ public class Structure {
 	/** Hochhaus = Skycraper */
 	public static final String skycraperName = "Hochhaus";
 	public static final int skycraperCost = 300;
-	public static final int skycraperIncome = 1;
+	public static final int skycraperIncome = 3;
 	public static final int skycraperSlot = 4;
 	public static final int skycraperExpectation = 5;
 	public static final int skycraperMaxPopulation = 50;
@@ -15,7 +15,7 @@ public class Structure {
 	/** Hotel */
 	public static final String hotelName = "Hotel";
 	public static final int hotelCost = 1000;
-	public static final int hotelIncome = 2;
+	public static final int hotelIncome = 5;
 	public static final int hotelSlot = 6;
 	public static final int hotelExpectation = 5;
 	public static final int hotelMaxPopulation = 200;

@@ -2,6 +2,7 @@ package gameUC;
 
 import java.util.ArrayList;
 
+
 public class City {
 
 	private ArrayList<Level> level;
@@ -18,7 +19,7 @@ public class City {
 	public int getActualLevel() {
 		return actualLevel;
 	}
-	
+
 	/** Level */
 	public ArrayList<Level> getLevel(){
 		return level;
@@ -59,6 +60,8 @@ public class City {
 				l.round();
 				credit += l.getIncome();
 				credit -= l.getExpenditure();
+				breakUp();
+				win();
 			}
 		}
 
@@ -276,15 +279,15 @@ public class City {
 			System.out.println("Nicht genügend Geld vorhanden");
 			return -1;
 		} else
-		if (level.isEmpty()){
-			System.out.println("Es ist keine Ebene vorhanden");
-			return -1;
-		} else 
+			if (level.isEmpty()){
+				System.out.println("Es ist keine Ebene vorhanden");
+				return -1;
+			} else 
 
-		if (level.get(actualLevel).destroyBuilding()){
-			credit -= Structure.destroyCostBuilding;
-			return 0;
-		}
+				if (level.get(actualLevel).destroyBuilding()){
+					credit -= Structure.destroyCostBuilding;
+					return 0;
+				}
 
 
 		return -3;
@@ -338,6 +341,23 @@ public class City {
 
 	public int getCredit(){
 		return credit;
+	}
+
+	public void breakUp(){
+		if (credit < 0){
+			System.out.println("Du bst Pleite und hast verloren");
+			output();
+			System.exit(0);
+		} 
+	}
+
+	public void win(){
+		if (credit >= 1000000){
+			System.out.println("Du hast gewonnen und bist reich");
+			output();
+			System.exit(0);
+		} 
+
 	}
 
 }	

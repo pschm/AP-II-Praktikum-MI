@@ -6,11 +6,17 @@ public class Level {
 
 	ArrayList<Building> building;
 	private int freeSlots;
+	private int numbSlots;
 
 	/** Konstruktor der die Anzahl der Freien Slots festlegt*/
 	Level(int numFreeSlots){
 		freeSlots = numFreeSlots;
+		numbSlots = numFreeSlots;
 		building = new ArrayList<Building>();
+	}
+
+	public int getNumbSlots() {
+		return numbSlots;
 	}
 
 	/** Fügt ein Bauwerk am Ende der Liste ein. */
@@ -41,8 +47,8 @@ public class Level {
 		building.remove(index);
 		
 		int lose = 0;
-		if (b instanceof Infrastructure){
-			lose += ((Infrastructure) b).getPopulation();
+		if (b instanceof Apartment){
+			lose += ((Apartment) b).getPopulation();
 			System.out.println("Die Ebene hat " +lose+ " Einwohner verloren");
 			
 		}
@@ -87,13 +93,14 @@ public class Level {
 	}
 
 	/**  Zeichnet die Bauwerke auf den einzelnen Slots*/
-	public void drawSlots(){
+	public String drawSlots(){
 		String cain = new String();
 
 		for(Building b : building){
 			cain += b.drawing();
 		}
 		System.out.print(cain);	
+		return cain;
 	}
 
 	/** Gibt Informationen der Ebene aus (Anz Einwohner, Lebenquali, Einnahmen und Ausgaben) */
