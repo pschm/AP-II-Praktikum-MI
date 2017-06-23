@@ -2,6 +2,7 @@ package gameUC;
 
 import java.util.Scanner;
 
+//import javax.swing.JFrame;
 
 import GUI.JGameFrame;
 
@@ -17,23 +18,57 @@ import GUI.JGameFrame;
  * @since 2017-05-20
  */
 
+// TODO Work on list
 /** 
  * Wir fügen noch folgende Klassen hinzu
- * Industrie mit Fabriken, Firmen
+ * Industrie mit Fabriken, Firmen (Methode: Umweltverschmutzung)
  * Handwerk mit kleinen Betrieben die die Läden beliefern
- * Freizeit mit Freizeitparks, Schwimmbäder, Kino 
- * Öffentliche Gebäude mit Rathhaus, Bibliothek etc
+ * Freizeit mit Freizeitparks, Schwimmbäder, Kino etc
+ * Öffentliche Gebäude mit Rathhaus, Bibliothek, Kultur, Kirche etc 
+ * (Kosten und bringen keinen Gewinn, viel Lebensqualität)
+ * 
+ * Öfftenliche Gebäude mit Müll, Abwasser, Wasseraufbereitung etc
+ * 
+ * Polizei, Krankenhaus, Feuerwehr etc
+ * 
  * Versorgungsgebäude Elektrizität und Wasser
  * Erzeugergebäude wie Wind-, Wasseranlagen
+ * verschiedene Shop größen: klein, mittel und Acarden
+ * Acarden werden mit verschiedenen kleinen und mittleren Shops eingerichtet
+ * Einwohner der Hotel in Abhänigkeit von Freizeitangeboten
  * 
  * Slotssystem muss umgebaut werden
+ * größere Slots
+ * Umweltwertung
  * 
+ * Randomereignisse: 
+ * Kathastrophen 
+ * bspw. einzelnes Gebäuden oder Ganze Ebene werden duurch brand zerstörrt
+ * 
+ * Gute Ereignisse
+ * bspw. Geld wenn Umweltwertung passt
+ * 
+ * Belohnung wenn Einwohnerzahl überschritten
+ * Wenn Einwohnerzahl erreicht - schneller Einwohner einziehen 
+ * 
+ * Steuersatz den man festlegen kann pro gewisse Rundenanzahl 
+ * 
+ * Winning und Lose Condition 
+ * 
+ * Gesamtausgabe
+ * 
+ * Tutorial
+ * 
+ * "Imbolilienhai" der aus Villen Hochhäuser macht
+ * 
+ * Fehlermeldungen als Frames
  */
 public class App {
 
 	static int f = 0;
 	static City st = new City();
-	static JGameFrame gameUC = new JGameFrame("Underground City", 1300, 1000, true, st);	
+	static JGameFrame gameUC = new JGameFrame("Underground City", 1300, 1000, true, st);
+
 	static Scanner scanner = new Scanner(System.in);
 	static int v = 0;
 		

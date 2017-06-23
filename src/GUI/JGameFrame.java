@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.Timer;
@@ -55,7 +56,7 @@ public class JGameFrame extends JFrame {
 		JPanel conLevPanel	= new JPanel (new FlowLayout());
 		JPanel levelPanel   = new JPanel (new FlowLayout());
 		JPanel buildPanel   = new JPanel (new FlowLayout());
-		gameUCPanel 	    = new JCityPanel(1200, 600, c);
+		gameUCPanel 	    = new JCityPanel(1200, 800, c);
 		JPanel roundPanel	= new JPanel (new FlowLayout());
 		JPanel wohnPanel    = new JPanel (new FlowLayout());
 		JPanel infraPanel   = new JPanel (new FlowLayout());
@@ -83,16 +84,18 @@ public class JGameFrame extends JFrame {
 
 		JButton destry1  = new JButton("Gebäude zerstören");
 		JButton destry2  = new JButton("Ebene zerstören");
+		//		JGameFrame indruFrame = new JGameFrame("Einführung", 800, 600, true, c);
+
 
 		/** Sollte zu Beginn als extra Frame auf tauchen*/
-//		JTextArea taexplain = new JTextArea(
-//				"-------------------------------------Willkommen in Underground City-------------------------------------\n"
-//						+ "Zu Beginn gibt es eine kleine Einführung\n"
-//						+ "Als aller erstes baust du eine Ebene.\n"
-//						+ "Wenn eine Ebene erstellt wurde kannst du Gebäude bauen.\n"
-//						+ "Achte auf dein Geld, wenn du Schulden generierst hast du verloren.\n"
-//						+ "Du benötigst die Lebensqualität von Parks, Supermärkten und Einkaufsläden damit \n"
-//						+ "dein Hochhaus, deine Villa oder dein Hotel Einwohner generieren kann");
+		JTextArea taexplain = new JTextArea(
+				"-------------------------------------Willkommen in Underground City-------------------------------------\n"
+						+ "Zu Beginn gibt es eine kleine Einführung\n"
+						+ "Als aller erstes baust du eine Ebene.\n"
+						+ "Wenn eine Ebene erstellt wurde kannst du Gebäude bauen.\n"
+						+ "Achte auf dein Geld, wenn du Schulden generierst hast du verloren.\n"
+						+ "Du benötigst die Lebensqualität von Parks, Supermärkten und Einkaufsläden damit \n"
+						+ "dein Hochhaus, deine Villa oder dein Hotel Einwohner generieren kann");
 		Font f  = new Font(Font.SANS_SERIF, Font.BOLD, 12);
 		Font f1 = new Font(Font.SANS_SERIF, Font.PLAIN, 18);
 		//		Font f2 = new Font(Font.SANS_SERIF, Font.BOLD, 20);
@@ -118,17 +121,18 @@ public class JGameFrame extends JFrame {
 		lbLevel.setFont(f1);
 		lbInfra.setFont(f1);
 		lbWohn.setFont(f1);
-//		taexplain.setFont(f1);
+		taexplain.setFont(f1);
 
 		add(gamePanel);
 		gamePanel.add(gameUCPanel);
-//		gamePanel.add(taexplain);
+		//		gamePanel.add(taexplain);
 		gamePanel.add(lbInfo);
 		gamePanel.add(controlPanel);
 		gamePanel.add(conLevPanel);
 		gamePanel.add(levelPanel);
 		gamePanel.add(buildPanel);
 		gamePanel.add(roundPanel);
+
 
 		controlPanel.add(btnStart);
 		controlPanel.add(btnExit);
@@ -156,56 +160,55 @@ public class JGameFrame extends JFrame {
 		gamePanel.add(infraPanel);
 
 		ActionListener alRoundStart = new ActionListener() {
- 			
- 			@Override
- 			public void actionPerformed(ActionEvent e) {
- 				c.round(1);
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				c.round(1);
 				lbInfo.setText("Guthaben: $ " +c.getCredit());
-				
+
 				playround += 1;
 				lbInfo.setText("Du hast "+playround+" Runden gespielt \n"
-							+ "Guthaben beträgt: $ " +c.getCredit());
- 				c.output();
+						+ "Guthaben beträgt: $ " +c.getCredit());
+				c.output();
+
+
 				gameUCPanel.updateDrawing();
- 				repaint();
- 			}
- 		};
- 		
+				repaint();
+			}
+		};
+
 		Timer timer = new Timer(1500, alRoundStart);
-		
+
 		btnStart.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(timer.isRunning()) {
-					btnStart.setText("Spiel Starten");
-					timer.stop();
+					btnStart.setText("Start");
+					timer.stop();				
 				} else {
+				
+					if(c.win() == true){
+						btnStart.setText("Spiel Beendet");
+						timer.start();
+					}
 					btnStart.setText("Spiel Beenden");
 					timer.start();
-					
 				}
 			}
 		});
-		
+
 
 		btnExit.addActionListener( new ActionListener () {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				c.output();
 				System.out.println("Spiel wird verlassen");
+				int selectedOption = JOptionPane.showConfirmDialog(null, "Wollen sie das Spiel verlassen?", "Spiel Verlassen", JOptionPane.OK_CANCEL_OPTION);
 
-				System.exit(0);
-				/** Hier könnte sich noch ein Frame öffnen welches eine Bestätigung will
-				 * 
-				 * boolean?
-				 * Cancel = Back to Game
-				 * Ok = Exit
-				 * 
-				 *  Bsp: Wollen sie sicher das Spiel beenden?
-				 *  			[OK]	[Cancel]
-				 */
-
+				if(selectedOption == JOptionPane.OK_OPTION){
+					System.exit(0);
+				}
 			}
 		});
 
@@ -226,7 +229,7 @@ public class JGameFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				c.lower();
 				lbInfo.setText("Du hast "+playround+" Runden gespielt \n"
-							+ "Guthaben beträgt: $ " +c.getCredit());
+						+ "Guthaben beträgt: $ " +c.getCredit());
 				c.output();
 
 
@@ -379,4 +382,5 @@ public class JGameFrame extends JFrame {
 
 
 	}
+
 }

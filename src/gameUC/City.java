@@ -1,6 +1,7 @@
 package gameUC;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 
 public class City {
@@ -8,7 +9,9 @@ public class City {
 	private ArrayList<Level> level;
 	private int actualLevel;
 	int credit = Structure.creditBeginn;
-
+	String f = "Fehlermeldung";
+	String l = "Game Over";
+	String w = "Congratulation";
 
 	/** Konstruktur der KLasse City */
 	City(){
@@ -18,6 +21,10 @@ public class City {
 	/** Die aktuelle Ebene */
 	public int getActualLevel() {
 		return actualLevel;
+	}
+	
+	public void setActualLevel(int actualLevel) {
+		this.actualLevel = actualLevel;
 	}
 
 	/** Level */
@@ -32,6 +39,7 @@ public class City {
 
 		/** prüfen ob die unterste Ebene erreicht wurde */
 		if (actualLevel == level.size()-1) {
+			JOptionPane.showMessageDialog(null, "Sie haben die niedrigste Ebene erreicht");
 			System.out.println("Sie befinden sich auf der niedrigsten Ebende");
 			return;
 		} 
@@ -45,6 +53,7 @@ public class City {
 		/** prüfen ob die höchste Ebene erreicht wurde */
 
 		if (actualLevel == 0) {
+			JOptionPane.showMessageDialog(null, "Sie haben die höchste Ebene erreicht");
 			System.out.println("Sie befinden sich auf der höchsten Ebende");
 			return;
 		}
@@ -61,7 +70,7 @@ public class City {
 				credit += l.getIncome();
 				credit -= l.getExpenditure();
 				breakUp();
-				win();
+//				win();
 			}
 		}
 
@@ -109,7 +118,14 @@ public class City {
 	public void buildLevel(int n){
 		/** n = Freie Slots */
 
+		if ( level.size() >= Structure.numMaxLevel){	
+			JOptionPane.showMessageDialog(null, "Sie haben die maximale Anzahl an Ebenen erreicht", f, JOptionPane.OK_OPTION);
+			System.out.println("Du kannst nicht mehr Ebenen bauen");
+			return;
+		}
+		
 		if (credit < Structure.levelCost * n  ){
+			JOptionPane.showMessageDialog(null, "Sie haben leider nicht genügend Geld", f, JOptionPane.OK_OPTION);
 			System.out.println("Sie haben nicht genügend Guthaben");
 			return;
 		}
@@ -129,14 +145,17 @@ public class City {
 		 */
 
 		if (credit < Structure.skycraperCost ){
+			JOptionPane.showMessageDialog(null, "Sie haben leider nicht genügend Geld", f, JOptionPane.OK_OPTION);
 			System.out.println("Nicht genügend Geld vorhanden");
 			return;
 		}
 		if (level.isEmpty()){
+			JOptionPane.showMessageDialog(null, "Es ist keine Ebene vorhanden die bebaut werden könnte", f, JOptionPane.OK_OPTION);
 			System.out.println("Keine Ebene vorhanden -  Baue erst eine Ebene");
 			return;
 		}
 		if ( level.get(actualLevel).getFreeSlots() < Structure.skycraperSlot ){
+			JOptionPane.showMessageDialog(null, "Die ausgewählte Ebene ist zu klein", f, JOptionPane.OK_OPTION);
 			System.out.println("Deine Ebene ist zu klein");
 			return;
 		}
@@ -154,14 +173,17 @@ public class City {
 		 */
 
 		if (credit < Structure.villaCost){
+			JOptionPane.showMessageDialog(null, "Sie haben leider nicht genügend Geld", f, JOptionPane.OK_OPTION);
 			System.out.println("Nicht genügend Geld vorhanden");
 			return;
 		}
 		if (level.isEmpty()){
+			JOptionPane.showMessageDialog(null, "Es ist keine Ebene vorhanden die bebaut werden könnte", f, JOptionPane.OK_OPTION);
 			System.out.println("Keine Ebene vorhanden -  Baue erst eine Ebene");
 			return;
 		}
 		if ( level.get(actualLevel).getFreeSlots() < Structure.villaSlot ){
+			JOptionPane.showMessageDialog(null, "Die ausgewählte Ebene ist zu klein", f, JOptionPane.OK_OPTION);
 			System.out.println("Deine Ebene ist zu klein");
 			return;
 		}
@@ -179,14 +201,17 @@ public class City {
 		 */
 
 		if (credit < Structure.marketCost){
+			JOptionPane.showMessageDialog(null, "Sie haben leider nicht genügend Geld", f, JOptionPane.OK_OPTION);
 			System.out.println("Nicht genügend Geld vorhanden");
 			return;
 		}
 		if (level.isEmpty()){
+			JOptionPane.showMessageDialog(null, "Es ist keine Ebene vorhanden die bebaut werden könnte", f, JOptionPane.OK_OPTION);
 			System.out.println("Keine Ebene vorhanden -  Baue erst eine Ebene");
 			return;
 		}
 		if ( level.get(actualLevel).getFreeSlots() < Structure.marketSlot ){
+			JOptionPane.showMessageDialog(null, "Die ausgewählte Ebene ist zu klein", f, JOptionPane.OK_OPTION);
 			System.out.println("Deine Ebene ist zu klein");
 			return;
 		}
@@ -204,14 +229,17 @@ public class City {
 		 */
 
 		if (credit < Structure.hotelCost){
+			JOptionPane.showMessageDialog(null, "Sie haben leider nicht genügend Geld", f, JOptionPane.OK_OPTION);
 			System.out.println("Nicht genügend Geld vorhanden");
 			return;
 		}
 		if (level.isEmpty()){
+			JOptionPane.showMessageDialog(null, "Es ist keine Ebene vorhanden die bebaut werden könnte", f, JOptionPane.OK_OPTION);
 			System.out.println("Keine Ebene vorhanden -  Baue erst eine Ebene");
 			return;
 		}
 		if ( level.get(actualLevel).getFreeSlots() < Structure.hotelSlot ){
+			JOptionPane.showMessageDialog(null, "Die ausgewählte Ebene ist zu klein", f, JOptionPane.OK_OPTION);
 			System.out.println("Deine Ebene ist zu klein");
 			return;
 		}
@@ -229,14 +257,17 @@ public class City {
 		 */
 
 		if (credit < Structure.parkCost ){
+			JOptionPane.showMessageDialog(null, "Sie haben leider nicht genügend Geld", f, JOptionPane.OK_OPTION);
 			System.out.println("Nicht genügend Geld vorhanden");
 			return;
 		}
 		if (level.isEmpty()){
+			JOptionPane.showMessageDialog(null, "Es ist keine Ebene vorhanden die bebaut werden könnte", f, JOptionPane.OK_OPTION);
 			System.out.println("Keine Ebene vorhanden -  Baue erst eine Ebene");
 			return;
 		}
 		if ( level.get(actualLevel).getFreeSlots() < Structure.parkSlot ){
+			JOptionPane.showMessageDialog(null, "Die ausgewählte Ebene ist zu klein", f, JOptionPane.OK_OPTION);
 			System.out.println("Deine Ebene ist zu klein");
 			return;
 		}
@@ -253,14 +284,17 @@ public class City {
 		 */
 
 		if (credit < Structure.shopCost ){
+			JOptionPane.showMessageDialog(null, "Sie haben leider nicht genügend Geld", f, JOptionPane.OK_OPTION);
 			System.out.println("Nicht genügend Geld vorhanden");
 			return;
 		}
 		if (level.isEmpty()){
+			JOptionPane.showMessageDialog(null, "Es ist keine Ebene vorhanden die bebaut werden könnte", f, JOptionPane.OK_OPTION);
 			System.out.println("Keine Ebene vorhanden -  Baue erst eine Ebene");
 			return;
 		}
 		if ( level.get(actualLevel).getFreeSlots() < Structure.shopSlot ){
+			JOptionPane.showMessageDialog(null, "Die auswählte Ebene ist zu klein", f, JOptionPane.OK_OPTION);
 			System.out.println("Deine Ebene ist zu klein");
 			return;
 		}
@@ -276,11 +310,13 @@ public class City {
 		 */
 
 		if (credit < Structure.destroyCostBuilding){
+			JOptionPane.showMessageDialog(null, "Sie haben leider nicht genügend Geld", f, JOptionPane.OK_OPTION);
 			System.out.println("Nicht genügend Geld vorhanden");
 			return -1;
 		} else
 			if (level.isEmpty()){
-				System.out.println("Es ist keine Ebene vorhanden");
+				JOptionPane.showMessageDialog(null, "Die auswählte Ebene ist zu klein", f, JOptionPane.OK_OPTION);
+				System.out.println("Deine Ebene ist zu klein");
 				return -1;
 			} else 
 
@@ -303,11 +339,13 @@ public class City {
 		 */
 
 		if (credit < Structure.destroyCostLevel){
+			JOptionPane.showMessageDialog(null, "Die haben leider nicht genügend Geld", f, JOptionPane.OK_OPTION);
 			System.out.println("Nicht genügend Geld");
 			return;
 		}
 
 		if (level.isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Es ist keine Ebene vorhanden die zerstörrt werden könnte", f, JOptionPane.OK_OPTION);
 			System.out.println("Keine Ebene Vorhanden");
 			return;
 		} 
@@ -335,6 +373,7 @@ public class City {
 	public void secret(){
 		credit = 0;
 		output();
+		JOptionPane.showMessageDialog(null, "Du hast verloren", l, JOptionPane.CANCEL_OPTION);
 		System.out.println("Du hast verloren. #Spielleiterwillkür");
 		System.exit(0);
 	} 
@@ -345,18 +384,21 @@ public class City {
 
 	public void breakUp(){
 		if (credit < 0){
+			JOptionPane.showMessageDialog(null, "Du hast verlosen - Grund: Kein Geld mehr", f, JOptionPane.OK_OPTION);
 			System.out.println("Du bst Pleite und hast verloren");
 			output();
 			System.exit(0);
 		} 
 	}
 
-	public void win(){
+	public boolean win(){
 		if (credit >= 1000000){
-			System.out.println("Du hast gewonnen und bist reich");
+			JOptionPane.showMessageDialog(null, "Du hast gewonnen - Grund: Guthaben über 1.000.000", w, JOptionPane.OK_OPTION);
+			System.out.println("Du hast gewonnen");
 			output();
-			System.exit(0);
+			return true;
 		} 
+	 return false;
 
 	}
 

@@ -14,7 +14,7 @@ public class Structure {
 	
 	/** Hotel */
 	public static final String hotelName = "Hotel";
-	public static final int hotelCost = 1000;
+	public static final int hotelCost = 100;
 	public static final int hotelIncome = 5;
 	public static final int hotelSlot = 6;
 	public static final int hotelExpectation = 5;
@@ -61,12 +61,12 @@ public class Structure {
 	public static final int mediumLevelSlot = 12;
 	public static final int bigLevelSlot = 14;
 	
-	public static final int creditBeginn = 11000;
+	public static final int creditBeginn = 9900;
 	
 	public static final int maxlifequality = 500;
 	
 	public static final int destroyCostBuilding = 500;
 	public static final int destroyCostLevel = 2000;
 	
-	
+	public static final int numMaxLevel = 10;
 }
