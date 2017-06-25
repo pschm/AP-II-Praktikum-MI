@@ -23,6 +23,7 @@ public class City {
 		return actualLevel;
 	}
 	
+	/** Setzen der aktuellen Ebene*/
 	public void setActualLevel(int actualLevel) {
 		this.actualLevel = actualLevel;
 	}
@@ -84,7 +85,7 @@ public class City {
 	/** Ausgabe der vorhandenen Informationen */
 	public void output(){
 
-		System.out.println("Guthaben: $ " + credit);
+		System.out.println("Guthaben: $ " + credit + "\n");
 
 		for( Level l : level ){
 

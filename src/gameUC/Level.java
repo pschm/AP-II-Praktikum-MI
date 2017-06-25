@@ -109,8 +109,30 @@ public class Level {
 		int life = getLifequality();
 		int income = getIncome();
 		int expen  = getExpenditure();
+		int profit = income - expen;
 		
-		String s = " Einwohner: " + pop + " Einnahmen: " + income + " Kosten: " + expen +  " Lebenqualität: " + life ;
+		String s = " Einwohner: " + pop + " Einnahmen: " + income + " Kosten: " + expen + "Profit" + profit + " Lebenqualität: " + life ;
+		System.out.print( s + "\n" );
+		return s;
+	}
+	
+	/**Soll für alle Ebenen einen String ausgeben mit der GesammtWohnerzahl etc*/
+	public String masterDrawInfo(){
+		int pop  = 0;
+		int life = 0;
+		int income = 0;
+		int expen  = 0;
+		int profit = 0;
+		
+		for(Building b : building){
+			pop 	+= b.getPopulation();
+			life 	+= b.getLifequality();
+			income 	+= b.getIncome();
+			expen 	+= b.getExpenditure();
+			profit	+= income - expen;
+		}
+		
+		String s = " Einwohner: " + pop + " Einnahmen: " + income + " Kosten: " + expen + "Profit" + profit + " Lebenqualität: " + life ;
 		System.out.print( s + "\n" );
 		return s;
 	}

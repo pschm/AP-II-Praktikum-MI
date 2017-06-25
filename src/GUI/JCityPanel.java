@@ -3,18 +3,13 @@ package GUI;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Shape;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-//import java.awt.GridLayout;
 import java.util.ArrayList;
-
-//import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import gameUC.City;
@@ -48,15 +43,15 @@ public class JCityPanel extends JPanel {
 		g2d.drawRect(5, 5, getWidth()-10, getHeight()-10 );
 
 		ArrayList<Level> nl = z.getLevel();
-//		int xLevel = 20;
+		//		int xLevel = 20;
 		int yLevel = 20;
 
 		/**
 		 * Schleife über alle Ebenen 
 		 */
-				for(int i = 0; i < nl.size(); i++) {
-//		for(Level l : nl) {
-						Level l = nl.get(i);
+		for(int i = 0; i < nl.size(); i++) {
+			//		for(Level l : nl) {
+			Level l = nl.get(i);
 			String occu = l.drawSlots();
 
 			int q = 20;
@@ -76,8 +71,8 @@ public class JCityPanel extends JPanel {
 
 				g3.setColor(Color.LIGHT_GRAY);
 				g3.fillRect(20 , yLevel, 50*Structure.smallLevelSlot, 50);
-				
-				
+
+
 
 				final int index = i;
 				smallPanel.addMouseListener( new MouseAdapter() {
@@ -86,7 +81,8 @@ public class JCityPanel extends JPanel {
 						z.setActualLevel(index);
 						smallPanel.setBackground(Color.CYAN);
 						smallPanel.setOpaque(true);
-						
+
+
 						/** Wenn die Maus clicket wird die Ebene cyan 
 						 * 
 						 * Fehler 1:
@@ -109,8 +105,10 @@ public class JCityPanel extends JPanel {
 						 * 
 						 */
 					}
+					
 				});
 
+				
 			}
 
 			if (freeSlots == Structure.mediumLevelSlot)
@@ -149,7 +147,7 @@ public class JCityPanel extends JPanel {
 					@Override
 					public void mouseClicked(MouseEvent e) {
 						z.setActualLevel(index);
-						
+
 					}
 				});
 			}
